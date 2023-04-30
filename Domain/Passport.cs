@@ -17,7 +17,5 @@ public class Passport : Entity
     public DateTime IssuedDate { get; set; }
     public DateTime BirthDate { get; set; }
     public Address BirthPlace { get; set; }
-    
-    public Guid UserId { get; set; }
     public virtual User User { get; set; }
 }

@@ -14,7 +14,7 @@ public class Employee : Entity
         News = new HashSet<News>();
     }
     public DateTime EmploymentDate { get; set; }
-    public Guid UserId { get; set; }
+    public string UserId { get; set; }
     public virtual User User { get; set; }
     
     public virtual ICollection<Profession> Professions { get; set; }

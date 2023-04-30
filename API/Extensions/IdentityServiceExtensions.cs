@@ -19,10 +19,6 @@ public static class IdentityServiceExtensions
                 opt.Password.RequireNonAlphanumeric = false;
                 //opt.SignIn.RequireConfirmedEmail = true;
             })
-            .AddRoles<UserRole>()
-            .AddRoleManager<RoleManager<UserRole>>()
-            .AddRoleStore<RoleStore<UserRole, DataContext, Guid>>()
-            .AddUserManager<UserManager<User>>()
             .AddEntityFrameworkStores<DataContext>()
             .AddSignInManager<SignInManager<User>>()
             .AddDefaultTokenProviders();

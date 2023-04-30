@@ -6,56 +6,56 @@ namespace Persistence;
 public class Seed
 {
     public static async Task SeedData(DataContext context,
-        UserManager<User>? userManager, RoleManager<UserRole> roleManager)
+        UserManager<User>? userManager, RoleManager<IdentityRole> roleManager)
     {
         if (!await roleManager.RoleExistsAsync("Admin"))
         {
-            var role = new UserRole(){Name = "Admin"};
+            var role = new IdentityRole(){Name = "Admin"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Resident"))
         {
-            var role = new UserRole(){Name = "Resident"};
+            var role = new IdentityRole(){Name = "Resident"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Student council"))
         {
-            var role = new UserRole(){Name = "Student council"};
+            var role = new IdentityRole(){Name = "Student council"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Commandant"))
         {
-            var role = new UserRole(){Name = "Commandant"};
+            var role = new IdentityRole(){Name = "Commandant"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Cleaner"))
         {
-            var role = new UserRole(){Name = "Cleaner"};
+            var role = new IdentityRole(){Name = "Cleaner"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Security guard"))
         {
-            var role = new UserRole(){Name = "Security guard"};
+            var role = new IdentityRole(){Name = "Security guard"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Duty officer"))
         {
-            var role = new UserRole(){Name = "Duty officer"};
+            var role = new IdentityRole(){Name = "Duty officer"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Supply manager"))
         {
-            var role = new UserRole(){Name = "Supply manager"};
+            var role = new IdentityRole(){Name = "Supply manager"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Linen keeper"))
         {
-            var role = new UserRole(){Name = "Linen keeper"};
+            var role = new IdentityRole(){Name = "Linen keeper"};
             await roleManager.CreateAsync(role);
         }
         if (!await roleManager.RoleExistsAsync("Fixer"))
         {
-            var role = new UserRole(){Name = "Fixer"};
+            var role = new IdentityRole(){Name = "Fixer"};
             await roleManager.CreateAsync(role);
         }
         
@@ -228,18 +228,6 @@ public class Seed
             IsSpent = false,
             Resident = SergeiResident
         };
-
-        roleManager.CreateAsync(new UserRole("Ремонтники", "Электромонтер, столяр-плотник, слесарь-сантехник"));
-        roleManager.CreateAsync(new UserRole("Уборщик", "Описание"));
-        roleManager.CreateAsync(new UserRole("Охранник", "Описание"));
-        roleManager.CreateAsync(new UserRole("Завхоз", "Описание"));
-        roleManager.CreateAsync(new UserRole("Канселянша", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
-        roleManager.CreateAsync(new UserRole("Слесарь", "Описание"));
 
 
         string password = "Password123!";

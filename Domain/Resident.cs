@@ -30,7 +30,7 @@ public class Resident : Entity
     public virtual Room Room { get; set; }
     public Guid CampusId { get; set; }
     public virtual Campus Campus { get; set; }
-    public Guid UserId { get; set; }
+    public string UserId { get; set; }
     public virtual User User { get; set; }
 
     
