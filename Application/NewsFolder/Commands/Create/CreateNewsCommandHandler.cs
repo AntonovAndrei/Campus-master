@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 using MediatR;
 using Persistence;
 

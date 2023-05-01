@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using API.Services;
 using Domain;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -19,9 +20,14 @@ public static class IdentityServiceExtensions
                 opt.Password.RequireNonAlphanumeric = false;
                 //opt.SignIn.RequireConfirmedEmail = true;
             })
+            .AddRoles<IdentityRole>()
+            .AddRoleManager<RoleManager<IdentityRole>>()
+            .AddRoleStore<RoleStore<IdentityRole, DataContext, string>>()
+            .AddUserManager<UserManager<User>>()
             .AddEntityFrameworkStores<DataContext>()
             .AddSignInManager<SignInManager<User>>()
             .AddDefaultTokenProviders();
+
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         

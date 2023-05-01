@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Domain.Common;
 
-namespace Domain;
+namespace Domain.Entities;
 
 public class Violation : Entity
 {

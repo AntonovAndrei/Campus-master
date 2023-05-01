@@ -2,6 +2,7 @@
 using API.DTOs;
 using API.Services;
 using Domain;
+using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -81,7 +82,7 @@ public class AccountController : ControllerBase
     {
         return new UserDto()
         {
-            Id = user.Id,
+            //Id = user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             MiddleName = user.MiddleName,

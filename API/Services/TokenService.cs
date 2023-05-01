@@ -3,6 +3,7 @@ using System.Text;
 using Domain;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Domain.Entities;
 
 namespace API.Services;
 

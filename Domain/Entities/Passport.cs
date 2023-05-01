@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using Domain.Common;
+using Domain.Enums;
+using Domain.ValueObjects;
 
-namespace Domain;
+namespace Domain.Entities;
 
 public class Passport : Entity
 {
@@ -10,12 +11,13 @@ public class Passport : Entity
     public string PassportSeries { get; set; }
     [StringLength(6)]
     public string PassportNumber { get; set; }
-    public string Gender { get; set; }
+    public Gender Gender { get; set; }
     public Address RegisteredPlace { get; set; }
     public string IssuedBy { get; set; }
     public string IssuedCode { get; set; }
     public DateTime IssuedDate { get; set; }
     public DateTime BirthDate { get; set; }
     public Address BirthPlace { get; set; }
+    public string UserId { get; set; }
     public virtual User User { get; set; }
 }

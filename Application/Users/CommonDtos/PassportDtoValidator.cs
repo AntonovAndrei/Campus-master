@@ -18,10 +18,10 @@ public class PassportDtoValidator : AbstractValidator<PassportDto>
             .NotNull();
         RuleFor(f => f.BirthPlace)
             .NotNull();
-        RuleFor(f => f.Gender)
-            .Must(s => s.Equals("м") || s.Equals("ж"))
-            .WithMessage("Гендер может быть либо ж либо м")
-            .NotEmpty();
+        // RuleFor(f => f.Gender)
+        //     .Must(s => s.Equals("m") || s.Equals("f"))
+        //     .WithMessage("Gender must been m or f")
+        //     .NotEmpty();
         RuleFor(f => f.IssuedBy)
             .NotEmpty();
         RuleFor(f => f.IssuedCode)

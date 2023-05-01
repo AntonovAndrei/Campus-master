@@ -1,4 +1,7 @@
 ﻿using Domain;
+using Domain.Entities;
+using Domain.Enums;
+using Domain.ValueObjects;
 using Microsoft.AspNetCore.Identity;
 
 namespace Persistence;
@@ -135,7 +138,7 @@ public class Seed
         {
             PassportSeries = "1234",
             PassportNumber = "123456",
-            Gender = "м",
+            Gender = Gender.Female,
             RegisteredPlace = address3,
             BirthPlace = address2,
             IssuedBy = "issued by",
@@ -187,7 +190,7 @@ public class Seed
         {
             PassportSeries = "1234",
             PassportNumber = "123456",
-            Gender = "м",
+            Gender = Gender.Female,
             RegisteredPlace = address4,
             BirthPlace = address5,
             IssuedBy = "issued by",
@@ -229,7 +232,6 @@ public class Seed
             Resident = SergeiResident
         };
 
-
         string password = "Password123!";
         await userManager.CreateAsync(SergeiUser, password);
         await userManager.CreateAsync(AlexUser, password);
@@ -245,8 +247,5 @@ public class Seed
         await context.Violations.AddAsync(violation);
 
         await context.SaveChangesAsync();
-        //add user with such roles as admin, resident, student council, commandant,
-        //cleaner, security guard, duty officer, supply manager, linen keeper, fixers(Электромонтер, столяр-плотник, слесарь-сантехник:)
-
     }
 }

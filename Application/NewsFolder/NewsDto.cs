@@ -1,6 +1,7 @@
 ﻿using Application.Common.Mappings;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 
 namespace Application.NewsFolder;
 

@@ -1,6 +1,7 @@
 ﻿using Application.Users.CommonDtos;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 
 namespace Application.Users.Employees;
 
@@ -20,6 +21,9 @@ public class CreateEmployeeDto : UserDto
 
     public override void Mapping(Profile profile)
     {
-        profile.CreateMap<CreateEmployeeDto, Employee>();
+        profile.CreateMap<CreateEmployeeDto, Employee>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
+        profile.CreateMap<CreateEmployeeDto, User>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
     }
 }

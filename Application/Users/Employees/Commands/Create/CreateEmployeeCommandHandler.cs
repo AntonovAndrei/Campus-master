@@ -3,6 +3,7 @@ using Application.Common;
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -32,8 +33,6 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         if (await _userManager.Users.AnyAsync(e => e.Email.Equals(request.EmployeeDto.Email)))
             return Result<Guid>.Failure("Email taken");
 
-        request.EmployeeDto.Id = Guid.Empty;
-        
         var user = _mapper.Map<User>(request.EmployeeDto);
         var employee = _mapper.Map<Employee>(request.EmployeeDto);
         user.Employee = employee;
@@ -71,12 +70,13 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
             try
             {
                 var userResult = await _userManager.CreateAsync(user, request.EmployeeDto.Password);
-                if (!userResult.Succeeded) return Result<Guid>.Failure("Problem adding user");
+                if (!userResult.Succeeded) 
+                    return Result<Guid>.Failure("Problem adding user");
         
-                await _context.Employees.AddAsync(employee, cancellationToken);
-                var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if(!empSaved) 
-                    return Result<Guid>.Failure("Problem adding employee");
+                // await _context.Employees.AddAsync(employee, cancellationToken);
+                // var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
+                // if(!empSaved) 
+                //     return Result<Guid>.Failure("Problem adding employee");
                 
                 await transaction.CommitAsync(cancellationToken);
             }

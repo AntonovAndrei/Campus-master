@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Common;
 
-namespace Domain;
+namespace Domain.Entities;
 
 public class Resident : Entity
 {

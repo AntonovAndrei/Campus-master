@@ -1,4 +1,6 @@
-namespace Domain
+using Domain.Common;
+
+namespace Domain.Entities
 {
     public class Photo : Entity
     {

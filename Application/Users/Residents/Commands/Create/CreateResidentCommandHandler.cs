@@ -3,6 +3,7 @@ using Application.Common;
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

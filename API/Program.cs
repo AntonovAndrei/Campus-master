@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -19,7 +20,7 @@ namespace API
             {
                 var context = services.GetRequiredService<DataContext>();
                 var userManager = services.GetRequiredService<UserManager<User>>();
-                var roleManager = services.GetRequiredService<RoleManager<UserRole>>();
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                 await context.Database.MigrateAsync();
                 await Seed.SeedData(context, userManager, roleManager);
             }

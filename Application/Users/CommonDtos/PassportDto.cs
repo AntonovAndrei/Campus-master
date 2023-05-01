@@ -2,6 +2,8 @@
 using Application.Common.Mappings;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
+using Domain.ValueObjects;
 
 namespace Application.Users.CommonDtos;
 

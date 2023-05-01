@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,8 @@ public class DataContext : IdentityDbContext<User>
         base.OnModelCreating(builder);
         
         builder.Entity<User>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
+        builder.Entity<User>()
             .HasOne(u => u.Passport)
             .WithOne(r => r.User)
             .OnDelete(DeleteBehavior.Cascade);
@@ -64,6 +67,9 @@ public class DataContext : IdentityDbContext<User>
         builder.Entity<Assistance>().Property(f => f.HelpDate).HasColumnType("date");
 
         builder.Entity<Employee>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
+
+        builder.Entity<Employee>()
             .HasMany(e => e.Professions)
             .WithMany(p => p.Employees);
         builder.Entity<Employee>()
@@ -71,6 +77,8 @@ public class DataContext : IdentityDbContext<User>
             .WithMany(p => p.Employees);
         builder.Entity<Employee>().Property(f => f.EmploymentDate).HasColumnType("date");
         
+        builder.Entity<Resident>()
+            .Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Entity<Resident>()
             .HasOne(e => e.Campus)
             .WithMany(p => p.Residents)

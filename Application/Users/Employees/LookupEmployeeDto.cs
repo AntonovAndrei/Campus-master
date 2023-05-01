@@ -1,6 +1,7 @@
 ﻿using Application.Users.CommonDtos;
 using AutoMapper;
 using Domain;
+using Domain.Entities;
 
 namespace Application.Users.Employees;
 

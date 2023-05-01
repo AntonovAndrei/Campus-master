@@ -1,7 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace Domain
+namespace Domain.Entities
 {
     public class User : IdentityUser
     {
@@ -18,7 +17,6 @@ namespace Domain
         public string? MiddleName { get; set; }
         public DateTime BirthDate { get; set; }
         public Guid? PhotoId { get; set; }
-        public Gender Gender { get; set; }
         
         public bool IsDeleted { get; set; }
         public virtual Passport Passport { get; set; }
