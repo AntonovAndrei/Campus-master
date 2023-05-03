@@ -2,7 +2,7 @@ using Domain.Common;
 
 namespace Domain.Entities
 {
-    public class Photo : Entity
+    public class Photo : BaseEntity
     {
         //public string Url { get; set; }
         public string? UserId { get; set; }

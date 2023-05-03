@@ -65,28 +65,9 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
             user.Photo = photo;
         }
 
-        using (var transaction = await _context.Database.BeginTransactionAsync(cancellationToken))
-        {
-            try
-            {
-                var userResult = await _userManager.CreateAsync(user, request.EmployeeDto.Password);
-                if (!userResult.Succeeded) 
-                    return Result<Guid>.Failure("Problem adding user");
-        
-                // await _context.Employees.AddAsync(employee, cancellationToken);
-                // var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
-                // if(!empSaved) 
-                //     return Result<Guid>.Failure("Problem adding employee");
-                
-                await transaction.CommitAsync(cancellationToken);
-            }
-            catch (DbException ex)
-            {
-                transaction.Rollback();
-                _logger.LogError(ex.Message);
-                return Result<Guid>.Failure("Employee creating failed");
-            }
-        }
+        var userResult = await _userManager.CreateAsync(user, request.EmployeeDto.Password);
+        if (!userResult.Succeeded) 
+            return Result<Guid>.Failure("Problem creating user");
         
         
         return Result<Guid>.Success(employee.Id);

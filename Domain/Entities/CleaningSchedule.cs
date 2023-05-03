@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities;
 
-public class CleaningSchedule : Entity
+public class CleaningSchedule : BaseEntity
 {
     [Range(1, 50)]
     public int Floor { get; set; }

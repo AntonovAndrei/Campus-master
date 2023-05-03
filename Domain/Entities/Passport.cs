@@ -5,7 +5,7 @@ using Domain.ValueObjects;
 
 namespace Domain.Entities;
 
-public class Passport : Entity
+public class Passport : BaseEntity
 {
     [StringLength(4)]
     public string PassportSeries { get; set; }

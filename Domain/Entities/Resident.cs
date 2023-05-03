@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Resident : Entity
+public class Resident : BaseEntity
 {
     public Resident()
     {

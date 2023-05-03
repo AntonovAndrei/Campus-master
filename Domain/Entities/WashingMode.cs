@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities;
 
-public class WashingMode : Entity
+public class WashingMode : BaseEntity
 {
     public WashingMode()
     {

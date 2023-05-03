@@ -67,28 +67,8 @@ public class CreateResidentCommandHandler : IRequestHandler<CreateResidentComman
             user.Photo = photo;
         }
 
-        using (var transaction = await _context.Database.BeginTransactionAsync(cancellationToken))
-        {
-            try
-            {
-                var userResult = await _userManager.CreateAsync(user, request.ResidentDto.Password);
-                if (!userResult.Succeeded) return Result<Guid>.Failure("Problem adding user");
-        
-                await _context.Residents.AddAsync(resident, cancellationToken);
-                var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if(!empSaved) 
-                    return Result<Guid>.Failure("Problem adding resident");
-                
-                await transaction.CommitAsync(cancellationToken);
-            }
-            catch (DbException ex)
-            {
-                transaction.Rollback();
-                _logger.LogError(ex.Message);
-                return Result<Guid>.Failure("Resident creating failed");
-            }
-        }
-        
+        var userResult = await _userManager.CreateAsync(user, request.ResidentDto.Password);
+        if (!userResult.Succeeded) return Result<Guid>.Failure("Problem creating user");
         
         return Result<Guid>.Success(resident.Id);
     }

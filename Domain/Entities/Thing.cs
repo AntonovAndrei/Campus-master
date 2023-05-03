@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Thing : Entity
+public class Thing : BaseEntity
 {
     public Thing()
     {

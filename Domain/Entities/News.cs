@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class News : Entity
+public class News : BaseEntity
 {
     public News()
     {

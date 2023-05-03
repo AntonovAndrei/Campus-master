@@ -3,7 +3,7 @@ using Domain.Common;
 
 namespace Domain.Entities;
 
-public class Room : Entity
+public class Room : BaseEntity
 {
     public Room()
     {

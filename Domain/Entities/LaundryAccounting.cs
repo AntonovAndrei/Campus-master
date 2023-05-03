@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class LaundryAccounting : Entity
+public class LaundryAccounting : BaseEntity
 {
     public DateTime Date { get; set; }
 

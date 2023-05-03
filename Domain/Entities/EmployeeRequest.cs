@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class EmployeeRequest : Entity
+public class EmployeeRequest : BaseEntity
 {
     
     public string Title { get; set; }

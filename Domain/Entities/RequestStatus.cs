@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class RequestStatus : Entity
+public class RequestStatus : BaseEntity
 {
     public string Status { get; set; }
 }

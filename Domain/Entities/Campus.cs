@@ -3,7 +3,7 @@ using Domain.ValueObjects;
 
 namespace Domain.Entities;
 
-public class Campus : Entity
+public class Campus : BaseEntity
 {
     public Campus()
     {

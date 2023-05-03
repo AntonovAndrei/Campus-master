@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Assistance : Entity
+public class Assistance : BaseEntity
 {
     public string Description { get; set; }
     public DateTime HelpDate { get; set; }

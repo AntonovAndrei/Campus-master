@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class LaundryQueue : Entity
+public class LaundryQueue : BaseEntity
 {
     public DateTime StartDateTime { get; set; }
 

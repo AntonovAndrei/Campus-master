@@ -35,8 +35,6 @@ public class DataContext : IdentityDbContext<User>
         base.OnModelCreating(builder);
         
         builder.Entity<User>()
-            .Property(p => p.Id).ValueGeneratedOnAdd();
-        builder.Entity<User>()
             .HasOne(u => u.Passport)
             .WithOne(r => r.User)
             .OnDelete(DeleteBehavior.Cascade);
@@ -64,10 +62,6 @@ public class DataContext : IdentityDbContext<User>
             .HasOne(a => a.Resident)
             .WithMany(e => e.Assistances)
             .HasForeignKey(a => a.ResidentId);
-        builder.Entity<Assistance>().Property(f => f.HelpDate).HasColumnType("date");
-
-        builder.Entity<Employee>()
-            .Property(p => p.Id).ValueGeneratedOnAdd();
 
         builder.Entity<Employee>()
             .HasMany(e => e.Professions)
@@ -77,8 +71,6 @@ public class DataContext : IdentityDbContext<User>
             .WithMany(p => p.Employees);
         builder.Entity<Employee>().Property(f => f.EmploymentDate).HasColumnType("date");
         
-        builder.Entity<Resident>()
-            .Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Entity<Resident>()
             .HasOne(e => e.Campus)
             .WithMany(p => p.Residents)
@@ -106,13 +98,6 @@ public class DataContext : IdentityDbContext<User>
             .WithMany(p => p.News);
         
         
-        // builder.Entity<EmployeeRequest>().Property(f => f.CreatedDate).HasColumnType("date");
-        // builder.Entity<EmployeeRequest>().Property(f => f.ClosedDate).HasColumnType("date");
-        // builder.Entity<Request>().Property(f => f.CreatedDate).HasColumnType("date");
-        // builder.Entity<Request>().Property(f => f.ClosedDate).HasColumnType("date");
-        builder.Entity<Request>().Property(f => f.Title).IsRequired();
-        // builder.Entity<LaundryAccounting>().Property(f => f.Date).HasColumnType("date");
-        // builder.Entity<LaundryQueue>().Property(f => f.StartDateTime).HasColumnType("date");
         builder.Entity<News>().Property(f => f.CreateDate).HasColumnType("date");
         builder.Entity<Passport>().Property(f => f.IssuedDate).HasColumnType("date");
         builder.Entity<Passport>().Property(f => f.BirthDate).HasColumnType("date");

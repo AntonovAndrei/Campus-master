@@ -32,44 +32,59 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
     {
         var user = await _context.Users
             .Where(x => x.Email.Equals(request.EmployeeDto.Email))
+            .Include(p => p.Passport)
             .FirstOrDefaultAsync(cancellationToken);
-        var employee = await _context.Employees.FindAsync(request.EmployeeDto.Id, cancellationToken);
+        if(user == null)
+            return Result<Unit>.Failure("There is no employee with such email");
+        var employee = await _context.Employees
+            .Where(i => i.Id.Equals(request.EmployeeDto.Id))
+            .Include(c => c.Campuses)
+            .Include(p => p.Professions)
+            .FirstOrDefaultAsync(cancellationToken);
         if(employee == null) return Result<Unit>.Failure("There is no employee with this id");
+
+        var photo = await _context.Photos.FindAsync(request.EmployeeDto.PhotoId);
+        if(photo.Equals(null))
+            return Result<Unit>.Failure("There is no photo with such id"); 
         
-        var campuses = await _context.Campuses
+        var newCampuses = await _context.Campuses
             .Where(i => request.EmployeeDto.CampusesIds.Contains(i.Id))
             .ToListAsync(cancellationToken);
-        employee.Campuses = campuses;
-        var professions = await _context.Professions
+        
+        var newcCampIds = request.EmployeeDto.CampusesIds;
+        var oldCampIds = employee.Campuses.Select(c => c.Id).ToList();
+        
+        var deletedCampuses = employee.Campuses.Where(i => oldCampIds.Except(newcCampIds).Contains(i.Id)).ToList();
+        var addedCampuses = employee.Campuses.Where(i => newcCampIds.Except(oldCampIds).Contains(i.Id)).ToList();
+        
+        foreach (var d in deletedCampuses)
+            employee.Campuses.Remove(d);
+        foreach (var n in addedCampuses)
+            employee.Campuses.Add(n);
+
+        
+        var dbProfessions = await _context.Professions
             .Where(i => request.EmployeeDto.ProfessionIds.Contains(i.Id))
             .ToListAsync(cancellationToken);
-        employee.Professions = professions;
         
-        _mapper.Map(user, request.EmployeeDto);
-        _mapper.Map(employee, request.EmployeeDto);
+        var newcProfIds = request.EmployeeDto.ProfessionIds;
+        var oldProfIds = employee.Professions.Select(c => c.Id).ToList();
         
-        using (var transaction = await _context.Database.BeginTransactionAsync(cancellationToken))
-        {
-            try
-            {
-                var userResult = await _userManager.UpdateAsync(user);
-                if (!userResult.Succeeded) return Result<Unit>.Failure("Problem updating user");
+        var deletedProfessions = employee.Professions.Where(i => oldProfIds.Except(newcProfIds).Contains(i.Id));
+        var addedProfessions = employee.Professions.Where(i => newcProfIds.Except(oldProfIds).Contains(i.Id));
         
-                _context.Employees.Update(employee);
-                var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if(!empSaved) 
-                    return Result<Unit>.Failure("Problem updating employee");
-                
-                await transaction.CommitAsync(cancellationToken);
-            }
-            catch (DbUpdateException ex)
-            {
-                transaction.Rollback();
-                _logger.LogError(ex.Message);
-                return Result<Unit>.Failure("Employee updating failed");
-            }
-        }
+        foreach (var d in deletedProfessions)
+            employee.Professions.Remove(d);
+        foreach (var n in addedProfessions)
+            employee.Professions.Add(n);
         
+        
+        _mapper.Map(request.EmployeeDto, user);
+        _mapper.Map(request.EmployeeDto, employee);
+        
+        var userResult = await _userManager.UpdateAsync(user);
+        if (!userResult.Succeeded) return Result<Unit>.Failure("Problem updating user");
+
         return Result<Unit>.Success(Unit.Value);
     }
 }

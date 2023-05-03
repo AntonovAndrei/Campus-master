@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Profession : Entity
+public class Profession : BaseEntity
 {
     public Profession()
     {

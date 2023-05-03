@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Violation : Entity
+public class Violation : BaseEntity
 {
     public string Description { get; set; }
     public DateTime IncidentDateTime { get; set; }
