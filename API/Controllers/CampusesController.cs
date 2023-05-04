@@ -1,4 +1,10 @@
-﻿using Application.Common.Pagination;
+﻿using Application.Campuses;
+using Application.Campuses.Commands.Create;
+using Application.Campuses.Commands.Delete;
+using Application.Campuses.Commands.Update;
+using Application.Campuses.Queries.Detail;
+using Application.Common.Pagination;
+using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -7,9 +13,9 @@ public class CampusesController : BaseApiController
 {
     
     [HttpGet]
-    public async Task<IActionResult> GetCampuss([FromQuery] PagingParams param)
+    public async Task<IActionResult> GetCampuss([FromQuery] Guid campusId)
     {
-        return HandleResult(await Mediator.Send(new GetCampusListQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new DetailCampusQuery() {CampusId = campusId}));
     }
     
     [HttpPost]
