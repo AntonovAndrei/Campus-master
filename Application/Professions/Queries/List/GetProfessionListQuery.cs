@@ -1,6 +1,10 @@
-﻿namespace Application.Professions.Queries.List;
+﻿using Application.Common;
+using Application.Common.Pagination;
+using MediatR;
 
-public class GetProfessionListQuery
+namespace Application.Professions.Queries.List;
+
+public class GetProfessionListQuery : IRequest<Result<PagedList<ProfessionDto>>>
 {
-    
+    public PagingParams Params { get; set; }
 }

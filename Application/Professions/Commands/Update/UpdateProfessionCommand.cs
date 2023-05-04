@@ -1,6 +1,9 @@
-﻿namespace Application.Professions.Commands.Update;
+﻿using Application.Common;
+using MediatR;
 
-public class UpdateProfessionCommand
+namespace Application.Professions.Commands.Update;
+
+public class UpdateProfessionCommand: IRequest<Result<Unit>>
 {
-    
+    public ProfessionDto ProfessionDto { get; set; }
 }

@@ -1,6 +1,9 @@
-﻿namespace Application.Professions.Commands.Delete;
+﻿using Application.Common;
+using MediatR;
 
-public class DeleteProfessionCommand
+namespace Application.Professions.Commands.Delete;
+
+public class DeleteProfessionCommand : IRequest<Result<Unit>>
 {
-    
+    public Guid Id { get; set; }
 }
