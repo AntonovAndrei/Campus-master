@@ -21,15 +21,36 @@ public class EmployeeListQueryHandler : IRequestHandler<EmployeeListQuery, Resul
 
     public async Task<Result<PagedList<EmployeeDto>>> Handle(EmployeeListQuery request, CancellationToken token)
     {
-        var query = _context.Employees
-            .AsNoTracking()
-            .OrderBy(t => t.User.LastName)
-            .Include(u => u.User)
+        IQueryable<EmployeeDto> query;
+
+        //Отрефакторить!!!
+        if (request.Params.FullName != null && !request.Params.FullName.Equals(""))
+        {
+            query = _context.Employees
+                .Where(e => e.User.FullName.ToLower().Contains(request.Params.FullName.ToLower()))
+                .AsNoTracking()
+                .OrderBy(t => t.User.LastName)
+                .Include(u => u.User)
                 .ThenInclude(p => p.Passport)
-            .Include(p => p.Professions)
-            .Include(c => c.Campuses)
-            .ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider)
-            .AsQueryable();
+                .Include(p => p.Professions)
+                .Include(c => c.Campuses)
+                .ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider)
+                .AsQueryable();
+        }
+        else
+        {
+            query = _context.Employees
+                .AsNoTracking()
+                .OrderBy(t => t.User.LastName)
+                .Include(u => u.User)
+                .ThenInclude(p => p.Passport)
+                .Include(p => p.Professions)
+                .Include(c => c.Campuses)
+                .ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider)
+                .AsQueryable();
+        }
+                
+                
         return Result<PagedList<EmployeeDto>>.Success(
             await PagedList<EmployeeDto>.CreateAsync(query, request.Params.PageNumber, request.Params.PageSize));
     }

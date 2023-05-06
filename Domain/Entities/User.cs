@@ -15,6 +15,7 @@ namespace Domain.Entities
         public string LastName { get; set; }
         //отчество
         public string? MiddleName { get; set; }
+        public string FullName { get; set; }
         public DateTime BirthDate { get; set; }
         public Guid? PhotoId { get; set; }
         

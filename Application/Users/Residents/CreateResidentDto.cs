@@ -18,6 +18,10 @@ public class CreateResidentDto : UserDto
     
     public override void Mapping(Profile profile)
     {
-        profile.CreateMap<CreateResidentDto, Resident>();
+        profile.CreateMap<CreateResidentDto, Resident>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
+        profile.CreateMap<CreateResidentDto, User>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.FullName, opt => opt.MapFrom(s => s.LastName + " " + s.FirstName + " " + s.MiddleName));
     }
 }

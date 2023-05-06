@@ -1,4 +1,5 @@
 ﻿using Application.Common.Pagination;
+using Application.Users.CommonDtos;
 using Application.Users.Employees;
 using Application.Users.Employees.Commands.Create;
 using Application.Users.Employees.Commands.Delete;
@@ -18,7 +19,7 @@ public class EmployeesController : BaseApiController
     }
     
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery]PagingParams param)
+    public async Task<IActionResult> GetList([FromQuery]UserParams param)
     {
         return HandleResult(await Mediator.Send(new EmployeeListQuery() {Params = param}));
     }

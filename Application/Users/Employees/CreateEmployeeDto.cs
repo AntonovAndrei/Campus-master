@@ -24,6 +24,7 @@ public class CreateEmployeeDto : UserDto
         profile.CreateMap<CreateEmployeeDto, Employee>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
         profile.CreateMap<CreateEmployeeDto, User>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore());
+            .ForMember(dest => dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.FullName, opt => opt.MapFrom(s => s.LastName + " " + s.FirstName + " " + s.MiddleName));
     }
 }

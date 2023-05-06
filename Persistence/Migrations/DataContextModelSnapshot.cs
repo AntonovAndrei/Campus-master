@@ -37,7 +37,7 @@ namespace Persistence.Migrations
                     b.ToTable("CampusEmployee");
                 });
 
-            modelBuilder.Entity("Domain.Assistance", b =>
+            modelBuilder.Entity("Domain.Entities.Assistance", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("HelpDate")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("ResidentId")
                         .HasColumnType("uuid");
@@ -65,7 +65,7 @@ namespace Persistence.Migrations
                     b.ToTable("Assistances");
                 });
 
-            modelBuilder.Entity("Domain.Campus", b =>
+            modelBuilder.Entity("Domain.Entities.Campus", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace Persistence.Migrations
                     b.ToTable("Campuses");
                 });
 
-            modelBuilder.Entity("Domain.CleaningSchedule", b =>
+            modelBuilder.Entity("Domain.Entities.CleaningSchedule", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,7 +106,7 @@ namespace Persistence.Migrations
                     b.ToTable("CleaningSchedules");
                 });
 
-            modelBuilder.Entity("Domain.Employee", b =>
+            modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,7 +127,7 @@ namespace Persistence.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Domain.EmployeeRequest", b =>
+            modelBuilder.Entity("Domain.Entities.EmployeeRequest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,7 +166,7 @@ namespace Persistence.Migrations
                     b.ToTable("EmployeeRequests");
                 });
 
-            modelBuilder.Entity("Domain.LaundryAccounting", b =>
+            modelBuilder.Entity("Domain.Entities.LaundryAccounting", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -190,7 +190,7 @@ namespace Persistence.Migrations
                     b.ToTable("LaundryAccountings");
                 });
 
-            modelBuilder.Entity("Domain.LaundryQueue", b =>
+            modelBuilder.Entity("Domain.Entities.LaundryQueue", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,7 +214,7 @@ namespace Persistence.Migrations
                     b.ToTable("LaundryQueue");
                 });
 
-            modelBuilder.Entity("Domain.News", b =>
+            modelBuilder.Entity("Domain.Entities.News", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -244,7 +244,7 @@ namespace Persistence.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("Domain.Passport", b =>
+            modelBuilder.Entity("Domain.Entities.Passport", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -291,7 +291,7 @@ namespace Persistence.Migrations
                     b.ToTable("Passports");
                 });
 
-            modelBuilder.Entity("Domain.Photo", b =>
+            modelBuilder.Entity("Domain.Entities.Photo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -308,7 +308,7 @@ namespace Persistence.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("Domain.Profession", b =>
+            modelBuilder.Entity("Domain.Entities.Profession", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -323,7 +323,7 @@ namespace Persistence.Migrations
                     b.ToTable("Professions");
                 });
 
-            modelBuilder.Entity("Domain.Request", b =>
+            modelBuilder.Entity("Domain.Entities.Request", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -367,7 +367,7 @@ namespace Persistence.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("Domain.RequestStatus", b =>
+            modelBuilder.Entity("Domain.Entities.RequestStatus", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -382,7 +382,7 @@ namespace Persistence.Migrations
                     b.ToTable("RequestStatus");
                 });
 
-            modelBuilder.Entity("Domain.Resident", b =>
+            modelBuilder.Entity("Domain.Entities.Resident", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -432,7 +432,7 @@ namespace Persistence.Migrations
                     b.ToTable("Residents");
                 });
 
-            modelBuilder.Entity("Domain.Room", b =>
+            modelBuilder.Entity("Domain.Entities.Room", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -459,7 +459,7 @@ namespace Persistence.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("Domain.RoomThing", b =>
+            modelBuilder.Entity("Domain.Entities.RoomThing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -483,7 +483,7 @@ namespace Persistence.Migrations
                     b.ToTable("RoomThings");
                 });
 
-            modelBuilder.Entity("Domain.Thing", b =>
+            modelBuilder.Entity("Domain.Entities.Thing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -498,10 +498,9 @@ namespace Persistence.Migrations
                     b.ToTable("Things");
                 });
 
-            modelBuilder.Entity("Domain.User", b =>
+            modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
@@ -522,6 +521,10 @@ namespace Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -583,7 +586,7 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Violation", b =>
+            modelBuilder.Entity("Domain.Entities.Violation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -614,7 +617,7 @@ namespace Persistence.Migrations
                     b.ToTable("Violations");
                 });
 
-            modelBuilder.Entity("Domain.WashingMode", b =>
+            modelBuilder.Entity("Domain.Entities.WashingMode", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -797,28 +800,28 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("CampusEmployee", b =>
                 {
-                    b.HasOne("Domain.Campus", null)
+                    b.HasOne("Domain.Entities.Campus", null)
                         .WithMany()
                         .HasForeignKey("CampusesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Employee", null)
+                    b.HasOne("Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Assistance", b =>
+            modelBuilder.Entity("Domain.Entities.Assistance", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("Assistances")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany("Assistances")
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -829,9 +832,9 @@ namespace Persistence.Migrations
                     b.Navigation("Resident");
                 });
 
-            modelBuilder.Entity("Domain.Campus", b =>
+            modelBuilder.Entity("Domain.Entities.Campus", b =>
                 {
-                    b.OwnsOne("Domain.Address", "Address", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.Address", "Address", b1 =>
                         {
                             b1.Property<Guid>("CampusId")
                                 .HasColumnType("uuid");
@@ -866,9 +869,9 @@ namespace Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.CleaningSchedule", b =>
+            modelBuilder.Entity("Domain.Entities.CleaningSchedule", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("CleaningSchedules")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -877,32 +880,32 @@ namespace Persistence.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Domain.Employee", b =>
+            modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
-                    b.HasOne("Domain.User", "User")
+                    b.HasOne("Domain.Entities.User", "User")
                         .WithOne("Employee")
-                        .HasForeignKey("Domain.Employee", "UserId")
+                        .HasForeignKey("Domain.Entities.Employee", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.EmployeeRequest", b =>
+            modelBuilder.Entity("Domain.Entities.EmployeeRequest", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("EmployeeRequests")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.RequestStatus", "RequestStatus")
+                    b.HasOne("Domain.Entities.RequestStatus", "RequestStatus")
                         .WithMany()
                         .HasForeignKey("RequestStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany("EmployeeRequests")
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -915,15 +918,15 @@ namespace Persistence.Migrations
                     b.Navigation("Resident");
                 });
 
-            modelBuilder.Entity("Domain.LaundryAccounting", b =>
+            modelBuilder.Entity("Domain.Entities.LaundryAccounting", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany()
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -934,15 +937,15 @@ namespace Persistence.Migrations
                     b.Navigation("Resident");
                 });
 
-            modelBuilder.Entity("Domain.LaundryQueue", b =>
+            modelBuilder.Entity("Domain.Entities.LaundryQueue", b =>
                 {
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany("LaundryQueues")
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.WashingMode", "WashingMode")
+                    b.HasOne("Domain.Entities.WashingMode", "WashingMode")
                         .WithMany("LaundryQueues")
                         .HasForeignKey("WashingModeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -953,9 +956,9 @@ namespace Persistence.Migrations
                     b.Navigation("WashingMode");
                 });
 
-            modelBuilder.Entity("Domain.News", b =>
+            modelBuilder.Entity("Domain.Entities.News", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("News")
                         .HasForeignKey("CreatedEmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -964,15 +967,15 @@ namespace Persistence.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("Domain.Passport", b =>
+            modelBuilder.Entity("Domain.Entities.Passport", b =>
                 {
-                    b.HasOne("Domain.User", "User")
+                    b.HasOne("Domain.Entities.User", "User")
                         .WithOne("Passport")
-                        .HasForeignKey("Domain.Passport", "UserId")
+                        .HasForeignKey("Domain.Entities.Passport", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Domain.Address", "BirthPlace", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.Address", "BirthPlace", b1 =>
                         {
                             b1.Property<Guid>("PassportId")
                                 .HasColumnType("uuid");
@@ -1003,7 +1006,7 @@ namespace Persistence.Migrations
                                 .HasForeignKey("PassportId");
                         });
 
-                    b.OwnsOne("Domain.Address", "RegisteredPlace", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.Address", "RegisteredPlace", b1 =>
                         {
                             b1.Property<Guid>("PassportId")
                                 .HasColumnType("uuid");
@@ -1043,35 +1046,35 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Photo", b =>
+            modelBuilder.Entity("Domain.Entities.Photo", b =>
                 {
-                    b.HasOne("Domain.User", "User")
+                    b.HasOne("Domain.Entities.User", "User")
                         .WithOne("Photo")
-                        .HasForeignKey("Domain.Photo", "UserId")
+                        .HasForeignKey("Domain.Entities.Photo", "UserId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Request", b =>
+            modelBuilder.Entity("Domain.Entities.Request", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("Requests")
                         .HasForeignKey("EmployeeId");
 
-                    b.HasOne("Domain.Profession", "Profession")
+                    b.HasOne("Domain.Entities.Profession", "Profession")
                         .WithMany("Requests")
                         .HasForeignKey("ProfessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.RequestStatus", "RequestStatus")
+                    b.HasOne("Domain.Entities.RequestStatus", "RequestStatus")
                         .WithMany()
                         .HasForeignKey("RequestStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany("Requests")
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1086,23 +1089,23 @@ namespace Persistence.Migrations
                     b.Navigation("Resident");
                 });
 
-            modelBuilder.Entity("Domain.Resident", b =>
+            modelBuilder.Entity("Domain.Entities.Resident", b =>
                 {
-                    b.HasOne("Domain.Campus", "Campus")
+                    b.HasOne("Domain.Entities.Campus", "Campus")
                         .WithMany("Residents")
                         .HasForeignKey("CampusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Room", "Room")
+                    b.HasOne("Domain.Entities.Room", "Room")
                         .WithMany("Residents")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.User", "User")
+                    b.HasOne("Domain.Entities.User", "User")
                         .WithOne("Resident")
-                        .HasForeignKey("Domain.Resident", "UserId")
+                        .HasForeignKey("Domain.Entities.Resident", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1113,15 +1116,15 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.RoomThing", b =>
+            modelBuilder.Entity("Domain.Entities.RoomThing", b =>
                 {
-                    b.HasOne("Domain.Room", "Room")
+                    b.HasOne("Domain.Entities.Room", "Room")
                         .WithMany("RoomThings")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Thing", "Thing")
+                    b.HasOne("Domain.Entities.Thing", "Thing")
                         .WithMany("RoomThings")
                         .HasForeignKey("ThingId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1132,15 +1135,15 @@ namespace Persistence.Migrations
                     b.Navigation("Thing");
                 });
 
-            modelBuilder.Entity("Domain.Violation", b =>
+            modelBuilder.Entity("Domain.Entities.Violation", b =>
                 {
-                    b.HasOne("Domain.Employee", "Employee")
+                    b.HasOne("Domain.Entities.Employee", "Employee")
                         .WithMany("Violations")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Resident", "Resident")
+                    b.HasOne("Domain.Entities.Resident", "Resident")
                         .WithMany("Violations")
                         .HasForeignKey("ResidentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1153,13 +1156,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("EmployeeProfession", b =>
                 {
-                    b.HasOne("Domain.Employee", null)
+                    b.HasOne("Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Profession", null)
+                    b.HasOne("Domain.Entities.Profession", null)
                         .WithMany()
                         .HasForeignKey("ProfessionsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1177,7 +1180,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Domain.User", null)
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1186,7 +1189,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Domain.User", null)
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1201,7 +1204,7 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.User", null)
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1210,7 +1213,7 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Domain.User", null)
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1219,25 +1222,25 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("NewsPhoto", b =>
                 {
-                    b.HasOne("Domain.News", null)
+                    b.HasOne("Domain.Entities.News", null)
                         .WithMany()
                         .HasForeignKey("NewsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Photo", null)
+                    b.HasOne("Domain.Entities.Photo", null)
                         .WithMany()
                         .HasForeignKey("PhotoIdsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Campus", b =>
+            modelBuilder.Entity("Domain.Entities.Campus", b =>
                 {
                     b.Navigation("Residents");
                 });
 
-            modelBuilder.Entity("Domain.Employee", b =>
+            modelBuilder.Entity("Domain.Entities.Employee", b =>
                 {
                     b.Navigation("Assistances");
 
@@ -1252,12 +1255,12 @@ namespace Persistence.Migrations
                     b.Navigation("Violations");
                 });
 
-            modelBuilder.Entity("Domain.Profession", b =>
+            modelBuilder.Entity("Domain.Entities.Profession", b =>
                 {
                     b.Navigation("Requests");
                 });
 
-            modelBuilder.Entity("Domain.Resident", b =>
+            modelBuilder.Entity("Domain.Entities.Resident", b =>
                 {
                     b.Navigation("Assistances");
 
@@ -1270,19 +1273,19 @@ namespace Persistence.Migrations
                     b.Navigation("Violations");
                 });
 
-            modelBuilder.Entity("Domain.Room", b =>
+            modelBuilder.Entity("Domain.Entities.Room", b =>
                 {
                     b.Navigation("Residents");
 
                     b.Navigation("RoomThings");
                 });
 
-            modelBuilder.Entity("Domain.Thing", b =>
+            modelBuilder.Entity("Domain.Entities.Thing", b =>
                 {
                     b.Navigation("RoomThings");
                 });
 
-            modelBuilder.Entity("Domain.User", b =>
+            modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Navigation("Employee")
                         .IsRequired();
@@ -1297,7 +1300,7 @@ namespace Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.WashingMode", b =>
+            modelBuilder.Entity("Domain.Entities.WashingMode", b =>
                 {
                     b.Navigation("LaundryQueues");
                 });
