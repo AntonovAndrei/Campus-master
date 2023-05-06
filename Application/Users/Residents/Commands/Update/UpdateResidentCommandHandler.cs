@@ -26,7 +26,6 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         _logger = logger;
     }
 
-
     public async Task<Result<Unit>> Handle(UpdateResidentCommand request, CancellationToken cancellationToken)
     {
         var user = await _context.Users
@@ -41,6 +40,7 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         if(campus == null)
             return Result<Unit>.Failure("No campus with such id");
         resident.Campus = campus;
+        
         var room = await _context.Rooms
             .Where(i => request.ResidentDto.RoomId.Equals(i.Id))
             .FirstOrDefaultAsync(cancellationToken);
@@ -51,28 +51,9 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         _mapper.Map(user, request.ResidentDto);
         _mapper.Map(resident, request.ResidentDto);
         
-        using (var transaction = await _context.Database.BeginTransactionAsync(cancellationToken))
-        {
-            try
-            {
-                var userResult = await _userManager.UpdateAsync(user);
-                if (!userResult.Succeeded) return Result<Unit>.Failure("Problem updating user");
-        
-                _context.Residents.Update(resident);
-                var empSaved = await _context.SaveChangesAsync(cancellationToken) > 0;
-                if(!empSaved) 
-                    return Result<Unit>.Failure("Problem updating resident");
-                
-                await transaction.CommitAsync(cancellationToken);
-            }
-            catch (DbUpdateException ex)
-            {
-                transaction.Rollback();
-                _logger.LogError(ex.Message);
-                return Result<Unit>.Failure("Resident updating failed");
-            }
-        }
-        
+        var userResult = await _userManager.UpdateAsync(user);
+        if (!userResult.Succeeded) return Result<Unit>.Failure("Problem updating user");
+
         return Result<Unit>.Success(Unit.Value);
     }
 }

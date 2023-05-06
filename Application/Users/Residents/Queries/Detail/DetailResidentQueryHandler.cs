@@ -21,9 +21,13 @@ public class DetailResidentQueryHandler : IRequestHandler<DetailResidentQuery, R
     public async Task<Result<ResidentDto>> Handle(DetailResidentQuery request, CancellationToken cancellationToken)
     {
         return Result<ResidentDto>.Success(
-            await _context.Employees
+            await _context.Residents
+                .AsNoTracking()
                 .Where(i => i.Id == request.ResidentId)
                 .Include(u => u.User)
+                    .ThenInclude(p => p.Passport)
+                .Include(r => r.Room)
+                .Include(c => c.Campus)
                 .ProjectTo<ResidentDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(cancellationToken)
         );

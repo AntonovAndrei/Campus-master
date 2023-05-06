@@ -3,17 +3,24 @@ using Application.Users.Employees;
 using Application.Users.Employees.Commands.Create;
 using Application.Users.Employees.Commands.Delete;
 using Application.Users.Employees.Commands.Update;
+using Application.Users.Employees.Queries.Detail;
+using Application.Users.Employees.Queries.List;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
 public class EmployeesController : BaseApiController
 {
-    [HttpGet]
-    public async Task<IActionResult> GetEmployees([FromQuery]PagingParams param)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetDetail(Guid id)
     {
-        throw new NotImplementedException();
-        //return HandleResult(await Mediator.Send(employee GetEmployeesListQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new DetailEmployeeQuery(){EmployeeId = id}));
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> GetList([FromQuery]PagingParams param)
+    {
+        return HandleResult(await Mediator.Send(new EmployeeListQuery() {Params = param}));
     }
     
     [HttpPost]

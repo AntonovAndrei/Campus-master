@@ -20,12 +20,15 @@ public class DetailEmployeeQueryHandler : IRequestHandler<DetailEmployeeQuery, R
     
     public async Task<Result<EmployeeDto>> Handle(DetailEmployeeQuery request, CancellationToken cancellationToken)
     {
-        return Result<EmployeeDto>.Success(
+        return Result<EmployeeDto>.Success(_mapper.Map<EmployeeDto>(
             await _context.Employees
-            .Where(i => i.Id == request.EmployeeId)
-            .Include(u => u.User)
-            .ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider)
-            .FirstOrDefaultAsync(cancellationToken)
-            );
+                .AsNoTracking()
+                .Where(i => i.Id == request.EmployeeId)
+                .Include(u => u.User)
+                    .ThenInclude(p => p.Passport)
+                .Include(p => p.Professions)
+                .Include(c => c.Campuses)
+                .FirstOrDefaultAsync(cancellationToken))
+        );
     }
 }

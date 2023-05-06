@@ -1,4 +1,6 @@
-﻿using Application.Common.Mappings;
+﻿using Application.Campuses;
+using Application.Common.Mappings;
+using Application.Professions;
 using Application.Users.CommonDtos;
 using AutoMapper;
 using Domain;
@@ -10,13 +12,13 @@ public class EmployeeDto : UserDto
 {
     public EmployeeDto()
     {
-        Professions = new List<string>();
-        Campusess = new List<string>();
+        Professions = new List<ProfessionDto>();
+        Campuses = new List<LookupCampusDto>();
     }
     
     public DateTime EmploymentDate { get; set; }
-    public List<string> Professions { get; set; }
-    public List<string> Campusess { get; set; }
+    public List<ProfessionDto> Professions { get; set; }
+    public List<LookupCampusDto> Campuses { get; set; }
 
     public override void Mapping(Profile profile)
     {
@@ -26,6 +28,8 @@ public class EmployeeDto : UserDto
             .ForMember(d => d.MiddleName, opt=> opt.MapFrom(s => s.User.MiddleName))
             .ForMember(d => d.BirthDate, opt=> opt.MapFrom(s => s.User.BirthDate))
             .ForMember(d => d.PhotoId, opt=> opt.MapFrom(s => s.User.PhotoId))
+            .ForMember(d => d.Email, opt=> opt.MapFrom(s => s.User.Email))
+            .ForMember(d => d.PhoneNumber, opt=> opt.MapFrom(s => s.User.PhoneNumber))
             .ForMember(d => d.Passport, opt=> opt.MapFrom(s => s.User.Passport));
     }
 }
