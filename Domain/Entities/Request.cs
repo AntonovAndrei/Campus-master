@@ -1,4 +1,5 @@
-﻿using Domain.Common;
+﻿using Domain.Enums;
+using Domain.SharedKernel;
 
 namespace Domain.Entities;
 

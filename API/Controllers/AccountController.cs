@@ -11,7 +11,6 @@ using Persistence;
 
 namespace API.Controllers;
 
-[AllowAnonymous]
 [ApiController]
 [Route("api/[controller]")]
 public class AccountController : ControllerBase
@@ -30,6 +29,8 @@ public class AccountController : ControllerBase
         _dbContext = dbContext;
     }
 
+
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Domain.Common;
+using Domain.SharedKernel;
 
 namespace Domain.Entities;
 

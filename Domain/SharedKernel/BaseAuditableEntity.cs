@@ -1,4 +1,4 @@
-﻿namespace Domain.Common;
+﻿namespace Domain.SharedKernel;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

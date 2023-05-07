@@ -92,49 +92,11 @@ public class Seed
             IsDeleted = false
         };
         
-        var addressSvib = new Address()
-        {
-            Corps = 1,
-            House = 2,
-            Street = "Petrovskaya",
-            Town = "Moscow",
-            Country = "Russia"
-        };
-        
-        var address2 = new Address()
-        {
-            Corps = 4,
-            House = 2,
-            Street = "Snezhaya",
-            Town = "Rostov",
-            Country = "Russia"
-        };
-        
-        var address3 = new Address()
-        {
-            Corps = 4,
-            House = 16,
-            Street = "Snezhaya",
-            Town = "Moscow",
-            Country = "Russia"
-        };
-        var address4 = new Address()
-        {
-            Corps = 4,
-            House = 2,
-            Street = "Snezhaya",
-            Town = "Rostov",
-            Country = "Russia"
-        };
-        
-        var address5 = new Address()
-        {
-            Corps = 4,
-            House = 16,
-            Street = "Snezhaya",
-            Town = "Moscow",
-            Country = "Russia"
-        };
+        var addressSvib = new Address("Russia", "Moscow", "Petrovskaya", 12, 2);
+        var address2 = new Address("Russia", "Rostov", "Snezhaya", 1);
+        var address3 = new Address("Russia", "Moscow", "Snezhaya", 21, 2);
+        var address4 = new Address("Russia", "Cheboksry", "Tractorostroitel`ey", 3, 4);
+        var address5 = new Address("Russia", "Moscow", "Snezhaya", 21, 2);
 
         var passportAlex = new Passport()
         {

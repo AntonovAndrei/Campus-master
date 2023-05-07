@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Domain.Common;
 using Domain.Enums;
+using Domain.SharedKernel;
 using Domain.ValueObjects;
 
 namespace Domain.Entities;

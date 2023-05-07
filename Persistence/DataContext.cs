@@ -19,7 +19,6 @@ public class DataContext : IdentityDbContext<User>
     public DbSet<News> News {get; set; }    
     public DbSet<Profession> Professions {get; set; }    
     public DbSet<Request> Requests {get; set; }    
-    public DbSet<RequestStatus> RequestStatus {get; set; }    
     public DbSet<Resident> Residents {get; set; }    
     public DbSet<EmployeeRequest> EmployeeRequests {get; set; }    
     public DbSet<Room> Rooms {get; set; }
