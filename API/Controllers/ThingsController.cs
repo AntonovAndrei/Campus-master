@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+[Authorize(Roles = "Student council")]
 public class ThingsController : BaseApiController
 {
     [HttpGet]

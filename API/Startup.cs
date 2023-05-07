@@ -31,7 +31,7 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Campus API v1"));
             }
-            app.UseCustomExceptionHandler();
+            //app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseRouting();

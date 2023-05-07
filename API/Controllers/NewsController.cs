@@ -1,10 +1,8 @@
 ﻿using Application.Common.Pagination;
 using Application.NewsFolder;
-using Application.NewsFolder.Commands;
 using Application.NewsFolder.Commands.Create;
 using Application.NewsFolder.Commands.Delete;
 using Application.NewsFolder.Commands.Update;
-using Application.NewsFolder.Queries;
 using Application.NewsFolder.Queries.List;
 using Microsoft.AspNetCore.Mvc;
 

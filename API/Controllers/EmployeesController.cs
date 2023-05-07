@@ -1,5 +1,4 @@
-﻿using Application.Common.Pagination;
-using Application.Users.CommonDtos;
+﻿using Application.Users.CommonDtos;
 using Application.Users.Employees;
 using Application.Users.Employees.Commands.Create;
 using Application.Users.Employees.Commands.Delete;

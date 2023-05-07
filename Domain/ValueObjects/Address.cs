@@ -15,7 +15,7 @@ public class Address : ValueObject
             nameof(town) + " can't be empty") : town;
         Street = string.IsNullOrWhiteSpace(street) ? throw new ArgumentException(
             nameof(street) + " can't be empty") : street;
-        House = house > 0 && house < 1000 ? throw new ArgumentException(
+        House = house < 0 && house > 1000 ? throw new ArgumentException(
             nameof(house) + " can't be lees than 0 and more than 1000") : house;
         Corps = corps;
     }

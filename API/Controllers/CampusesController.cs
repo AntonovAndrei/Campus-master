@@ -3,8 +3,6 @@ using Application.Campuses.Commands.Create;
 using Application.Campuses.Commands.Delete;
 using Application.Campuses.Commands.Update;
 using Application.Campuses.Queries.Detail;
-using Application.Common.Pagination;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
