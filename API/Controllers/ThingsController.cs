@@ -1,17 +1,16 @@
 ﻿using Application.Common.Pagination;
 using Application.Things;
-using Application.Things.Commands;
 using Application.Things.Commands.Create;
 using Application.Things.Commands.Delete;
 using Application.Things.Commands.Update;
-using Application.Things.Queries;
 using Application.Things.Queries.List;
+using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[Authorize(Roles = "Student council")]
+[Authorize(Roles = Roles.StudentCouncil)]
 public class ThingsController : BaseApiController
 {
     [HttpGet]

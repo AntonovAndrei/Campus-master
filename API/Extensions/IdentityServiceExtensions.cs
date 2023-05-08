@@ -43,6 +43,13 @@ public static class IdentityServiceExtensions
                 };
             });
         services.AddScoped<TokenService>();
+        // services.AddAuthorization(options =>
+        // {
+        //     options.AddPolicy("RequireAdministratorRole",
+        //         policy => policy.RequireRole("Administrator"));
+        //     options.AddPolicy("RequireStudentCouncilRole",
+        //         policy => policy.RequireRole("StudentCouncil"));
+        // });
 
         return services;
     }

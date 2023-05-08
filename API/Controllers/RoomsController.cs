@@ -1,4 +1,5 @@
-﻿using Application.Common.Pagination;
+﻿using System.Security.Claims;
+using Application.Common.Pagination;
 using Application.Rooms;
 using Application.Rooms.Commands.Create;
 using Application.Rooms.Commands.Delete;
@@ -13,6 +14,11 @@ public class RoomsController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetRooms([FromQuery] PagingParams param)
     {
+        var identity = (ClaimsIdentity)User.Identity;
+        var roles = ((ClaimsIdentity)User.Identity).Claims
+            .Where(c => c.Type == ClaimTypes.Role)
+            .Select(c => c.Value);
+        Console.WriteLine(roles);
         return HandleResult(await Mediator.Send(new GetRoomListQuery {Params = param}));
     }
     

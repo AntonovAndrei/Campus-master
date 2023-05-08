@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Formats.Asn1;
+using System.Security.Claims;
 using API.DTOs;
 using API.Services;
 using Domain;
@@ -44,7 +45,7 @@ public class AccountController : ControllerBase
 
         if (result.Succeeded)
         {
-            return CreateUserObject(user);
+            return await CreateUserObjectAsync(user);
         }
 
         return Unauthorized();
@@ -82,11 +83,12 @@ public class AccountController : ControllerBase
     {
         var user = await _userManager.Users
             .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
-        return CreateUserObject(user);
+        return await CreateUserObjectAsync(user);
     } 
         
-    private UserDto CreateUserObject(User user)
+    private async Task<UserDto> CreateUserObjectAsync(User user)
     {
+        var roles = await _userManager.GetRolesAsync(user);
         string type;
         if (user.Resident == null)
             type = "employee";
@@ -98,7 +100,7 @@ public class AccountController : ControllerBase
             FirstName = user.FirstName,
             LastName = user.LastName,
             MiddleName = user.MiddleName,
-            Token = _tokenService.CreateToken(user),
+            Token = await _tokenService.CreateTokenAsync(user, roles),
             Type = type
         };
     }

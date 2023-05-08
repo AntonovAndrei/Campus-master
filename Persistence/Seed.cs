@@ -11,59 +11,19 @@ public class Seed
     public static async Task SeedData(DataContext context,
         UserManager<User>? userManager, RoleManager<IdentityRole> roleManager)
     {
-        if (!await roleManager.RoleExistsAsync("Admin"))
+        
+        var flds = typeof(Roles).GetFields();
+        foreach (var fld in flds)
         {
-            var role = new IdentityRole(){Name = "Admin"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Resident"))
-        {
-            var role = new IdentityRole(){Name = "Resident"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Student council"))
-        {
-            var role = new IdentityRole(){Name = "Student council"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Commandant"))
-        {
-            var role = new IdentityRole(){Name = "Commandant"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Cleaner"))
-        {
-            var role = new IdentityRole(){Name = "Cleaner"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Security guard"))
-        {
-            var role = new IdentityRole(){Name = "Security guard"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Duty officer"))
-        {
-            var role = new IdentityRole(){Name = "Duty officer"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Supply manager"))
-        {
-            var role = new IdentityRole(){Name = "Supply manager"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Linen keeper"))
-        {
-            var role = new IdentityRole(){Name = "Linen keeper"};
-            await roleManager.CreateAsync(role);
-        }
-        if (!await roleManager.RoleExistsAsync("Fixer"))
-        {
-            var role = new IdentityRole(){Name = "Fixer"};
-            await roleManager.CreateAsync(role);
+            string r = fld.GetValue(typeof(Roles)).ToString();
+            
+            if (!await roleManager.RoleExistsAsync(r))
+                await roleManager.CreateAsync(new IdentityRole(){Name = r});
         }
         
         if(context.Violations.Any())
             return;
+
         
         
         var AlexUser = new User
