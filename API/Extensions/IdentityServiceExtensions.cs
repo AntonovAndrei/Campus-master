@@ -2,6 +2,8 @@
 using API.Services;
 using Domain;
 using Domain.Entities;
+using Domain.Enums;
+using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -43,13 +45,16 @@ public static class IdentityServiceExtensions
                 };
             });
         services.AddScoped<TokenService>();
-        // services.AddAuthorization(options =>
-        // {
-        //     options.AddPolicy("RequireAdministratorRole",
-        //         policy => policy.RequireRole("Administrator"));
-        //     options.AddPolicy("RequireStudentCouncilRole",
-        //         policy => policy.RequireRole("StudentCouncil"));
-        // });
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("MustBeRequestCreator",
+                policy =>
+                {
+                    policy.Requirements.Add(new IsRequestCreatorRequirement());
+                });
+            options.AddPolicy("RequireStudentCouncilRole",
+                policy => policy.RequireRole(Roles.StudentCouncil));
+        });
 
         return services;
     }

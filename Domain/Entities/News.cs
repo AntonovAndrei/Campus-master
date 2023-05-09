@@ -12,8 +12,7 @@ public class News : BaseEntity
     public string Title { get; set; }
     public string Content { get; set; }
     public Guid MainPhotoId { get; set; }
-    //public virtual Photo Photo { get; set; }
-    //Employ
+    
     public Guid CreatedEmployeeId { get; set; }
     public virtual Employee Employee { get; set; }
     

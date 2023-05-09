@@ -19,8 +19,7 @@ public class DataContext : IdentityDbContext<User>
     public DbSet<News> News {get; set; }    
     public DbSet<Profession> Professions {get; set; }    
     public DbSet<Request> Requests {get; set; }    
-    public DbSet<Resident> Residents {get; set; }    
-    public DbSet<EmployeeRequest> EmployeeRequests {get; set; }    
+    public DbSet<Resident> Residents {get; set; }   
     public DbSet<Room> Rooms {get; set; }
     public DbSet<Thing> Things {get; set; }
     public DbSet<Violation> Violations { get; set; }
@@ -66,9 +65,12 @@ public class DataContext : IdentityDbContext<User>
             .HasMany(e => e.Professions)
             .WithMany(p => p.Employees);
         builder.Entity<Employee>()
+            .HasMany(e => e.ResponsibleFor)
+            .WithMany(p => p.Responsible);
+        builder.Entity<Employee>()
             .HasMany(e => e.Campuses)
             .WithMany(p => p.Employees);
-        builder.Entity<Employee>().Property(f => f.EmploymentDate).HasColumnType("date");
+        
         
         builder.Entity<Resident>()
             .HasOne(e => e.Campus)
@@ -78,6 +80,11 @@ public class DataContext : IdentityDbContext<User>
             .HasOne(e => e.Room)
             .WithMany(p => p.Residents)
             .HasForeignKey(e => e.RoomId);
+        
+        builder.Entity<Request>()
+            .HasOne(r => r.Type)
+            .WithMany(s => s.Requests)
+            .HasForeignKey(e => e.TypeId);
         
         builder.Entity<RoomThing>()
             .HasOne(r => r.Room)
@@ -103,6 +110,7 @@ public class DataContext : IdentityDbContext<User>
         builder.Entity<Passport>().Property(f => f.PassportSeries).HasMaxLength(4).IsFixedLength();
         builder.Entity<Passport>().Property(f => f.PassportNumber).HasMaxLength(6).IsFixedLength();
         builder.Entity<Resident>().Property(f => f.GraduationDate).HasColumnType("date");
+        builder.Entity<Employee>().Property(f => f.EmploymentDate).HasColumnType("date");
         builder.Entity<Room>().Property(f => f.RepairDate).HasColumnType("date");
         builder.Entity<User>().Property(f => f.BirthDate).HasColumnType("date");
     }

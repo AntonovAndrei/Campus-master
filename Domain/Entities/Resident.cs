@@ -7,7 +7,6 @@ public class Resident : BaseEntity
     public Resident()
     {
         Requests = new HashSet<Request>();
-        EmployeeRequests = new HashSet<EmployeeRequest>();
         LaundryQueues = new HashSet<LaundryQueue>();
         Violations = new HashSet<Violation>();
         Assistances = new HashSet<Assistance>();
@@ -36,7 +35,6 @@ public class Resident : BaseEntity
     
     public virtual ICollection<Assistance> Assistances { get; set; }
     public virtual ICollection<Request> Requests { get; set; }
-    public virtual ICollection<EmployeeRequest> EmployeeRequests { get; set; }
     public virtual ICollection<LaundryQueue> LaundryQueues { get; set; }
     public virtual ICollection<Violation> Violations { get; set; }
 }
