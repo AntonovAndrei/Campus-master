@@ -5,6 +5,12 @@ namespace Domain.Entities;
 
 public class Request : BaseEntity
 {
+    public Request()
+    {
+        CreatedDate = DateTime.UtcNow;
+        RequestStatus = RequestStatus.Created;
+    }
+    
     public string Title { get; set; }
     public string? Description { get; set; }
     public DateTime CreatedDate { get; set; }

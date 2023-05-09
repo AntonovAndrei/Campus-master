@@ -27,6 +27,7 @@ public class DataContext : IdentityDbContext<User>
     public DbSet<RoomThing> RoomThings { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<Passport> Passports { get; set; }
+    public DbSet<RequestType> RequestTypes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -85,6 +86,14 @@ public class DataContext : IdentityDbContext<User>
             .HasOne(r => r.Type)
             .WithMany(s => s.Requests)
             .HasForeignKey(e => e.TypeId);
+        builder.Entity<Request>()
+            .HasOne(r => r.Employee)
+            .WithMany(s => s.Requests)
+            .HasForeignKey(e => e.ExecutorEmployeeId);
+        builder.Entity<Request>()
+            .HasOne(r => r.Resident)
+            .WithMany(s => s.Requests)
+            .HasForeignKey(e => e.CreatorResidentId);
         
         builder.Entity<RoomThing>()
             .HasOne(r => r.Room)

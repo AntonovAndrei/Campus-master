@@ -31,6 +31,7 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         var user = await _context.Users
             .Where(x => x.Email.Equals(request.ResidentDto.Email))
             .FirstOrDefaultAsync(cancellationToken);
+        возможно тут ошибка, нужно проверить, так как при маппинге id игнорируеться
         var resident = await _context.Residents.FindAsync(request.ResidentDto.Id, cancellationToken);
         if(resident == null) return Result<Unit>.Failure("There is no resident with this id");
         

@@ -47,6 +47,7 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
         if(photo.Equals(null))
             return Result<Unit>.Failure("There is no photo with such id"); 
         
+        
         var newCampuses = await _context.Campuses
             .Where(i => request.EmployeeDto.CampusesIds.Contains(i.Id))
             .ToListAsync(cancellationToken);

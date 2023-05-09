@@ -1,6 +1,9 @@
-﻿namespace Application.Requests.Commands.Delete;
+﻿using Application.Common;
+using MediatR;
 
-public class DeleteRequestCommand
+namespace Application.Requests.Commands.Delete;
+
+public class DeleteRequestCommand : IRequest<Result<Unit>>
 {
-    
+    public Guid Id { get; set; }
 }

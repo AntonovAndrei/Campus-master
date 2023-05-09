@@ -1,6 +1,11 @@
-﻿namespace Application.Requests.Commands.Create;
+﻿using FluentValidation;
 
-public class CreateRequestCommandValidator
+namespace Application.Requests.Commands.Create;
+
+public class CreateRequestCommandValidator : AbstractValidator<CreateRequestCommand>
 {
-    
+    public CreateRequestCommandValidator()
+    {
+        RuleFor(p => p.CreateRequestDto).SetValidator(new CreateRequestDtoValidator());
+    }
 }

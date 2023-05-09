@@ -21,6 +21,10 @@ namespace API
         //КОЛИЧЕСТВО НЕПУСТЫХ СТРОК В ПРОЕКТЕ
         //Get-ChildItem -Recurse -File -Filter *.cs | Where-Object { $_.DirectoryName -notmatch '\\bin$|\\obj$|\\Release$|\\Debug$' } | ForEach-Object { Get-Content $_.FullName | Where-Object { $_ -match '\S' } } | Measure-Object -Line | Select-Object -ExpandProperty Lines
         //
+        //ПОДСЧЕТ КОЛИЧЕСТВА .CS ФАЙЛОВ В ПРОЕКТЕ
+        //(Get-ChildItem -Path . -Filter "*.cs" -Recurse | Measure-Object).Count
+       
+        
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

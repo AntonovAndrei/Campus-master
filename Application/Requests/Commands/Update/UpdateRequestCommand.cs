@@ -1,6 +1,9 @@
-﻿namespace Application.Requests.Commands.Update;
+﻿using Application.Common;
+using MediatR;
 
-public class UpdateRequestCommand
+namespace Application.Requests.Commands.Update;
+
+public class UpdateRequestCommand: IRequest<Result<Unit>>
 {
-    
+    public CreateRequestDto CreateRequestDto { get; set; }
 }

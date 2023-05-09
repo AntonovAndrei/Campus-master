@@ -1,6 +1,9 @@
-﻿namespace Application.Requests.Commands.Create;
+﻿using Application.Common;
+using MediatR;
 
-public class CreateRequestCommand
+namespace Application.Requests.Commands.Create;
+
+public class CreateRequestCommand : IRequest<Result<Guid>>
 {
-    
+    public CreateRequestDto CreateRequestDto { get; set; }
 }

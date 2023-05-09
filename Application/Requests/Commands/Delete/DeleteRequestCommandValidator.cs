@@ -1,6 +1,11 @@
-﻿namespace Application.Requests.Commands.Delete;
+﻿using FluentValidation;
 
-public class DeleteRequestCommandValidator
+namespace Application.Requests.Commands.Delete;
+
+public class DeleteRequestCommandValidator : AbstractValidator<DeleteRequestCommand>
 {
-    
+    public DeleteRequestCommandValidator()
+    {
+        RuleFor(i => i.Id).NotEqual(Guid.Empty);
+    }
 }
