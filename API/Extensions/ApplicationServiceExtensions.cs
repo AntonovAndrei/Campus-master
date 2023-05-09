@@ -66,9 +66,9 @@ public static class ApplicationServiceExtensions
             options.LowercaseUrls = true;
         });
         services.AddOptions();
-        services.AddMediatR(typeof(GetListThingQuery).Assembly);
+        services.AddMediatR(typeof(ListThingQuery).Assembly);
         //services.AddMediatR(Assembly.GetExecutingAssembly());
-        services.AddValidatorsFromAssemblies(new[] {typeof(GetListThingQuery).Assembly});
+        services.AddValidatorsFromAssemblies(new[] {typeof(ListThingQuery).Assembly});
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddAutoMapper(config =>
         {

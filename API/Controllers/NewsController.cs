@@ -13,7 +13,7 @@ public class NewsController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetNews([FromQuery]PagingParams param)
     {
-        return HandleResult(await Mediator.Send(new GetNewsListQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new NewsListQuery {Params = param}));
     }
     
     [HttpPost]

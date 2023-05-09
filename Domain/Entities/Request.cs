@@ -9,8 +9,6 @@ public class Request : BaseEntity
     public string? Description { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? ClosedDate { get; set; }
-
-    public Guid RequestStatusId { get; set; }
     public Guid CreatorResidentId { get; set; }
     public Guid? ExecutorEmployeeId { get; set; }
     public Guid TypeId { get; set; }

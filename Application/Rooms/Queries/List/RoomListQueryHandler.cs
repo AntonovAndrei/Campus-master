@@ -7,18 +7,18 @@ using Persistence;
 
 namespace Application.Rooms.Queries.List;
 
-public class GetRoomListQueryHandler : IRequestHandler<GetRoomListQuery, Result<PagedList<RoomDto>>>
+public class RoomListQueryHandler : IRequestHandler<RoomListQuery, Result<PagedList<RoomDto>>>
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
 
-    public GetRoomListQueryHandler(DataContext context, IMapper mapper)
+    public RoomListQueryHandler(DataContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<Result<PagedList<RoomDto>>> Handle(GetRoomListQuery request, CancellationToken token)
+    public async Task<Result<PagedList<RoomDto>>> Handle(RoomListQuery request, CancellationToken token)
     {
         var query = _context.Rooms.OrderBy(t => t.Block)
             .ProjectTo<RoomDto>(_mapper.ConfigurationProvider)

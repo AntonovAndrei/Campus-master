@@ -7,18 +7,18 @@ using Persistence;
 
 namespace Application.Professions.Queries.List;
 
-public class GetProfessionListQueryHandler: IRequestHandler<GetProfessionListQuery, Result<PagedList<ProfessionDto>>>
+public class ProfessionListQueryHandler: IRequestHandler<ProfessionListQuery, Result<PagedList<ProfessionDto>>>
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
 
-    public GetProfessionListQueryHandler(DataContext context, IMapper mapper)
+    public ProfessionListQueryHandler(DataContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<Result<PagedList<ProfessionDto>>> Handle(GetProfessionListQuery request, CancellationToken token)
+    public async Task<Result<PagedList<ProfessionDto>>> Handle(ProfessionListQuery request, CancellationToken token)
     {
         var query = _context.Professions.OrderBy(t => t.Name)
             .ProjectTo<ProfessionDto>(_mapper.ConfigurationProvider)

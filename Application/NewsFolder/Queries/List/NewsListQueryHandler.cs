@@ -8,18 +8,18 @@ using Persistence;
 
 namespace Application.NewsFolder.Queries.List;
 
-public class GetNewsListQueryHandler : IRequestHandler<GetNewsListQuery, Result<PagedList<NewsDto>>>
+public class NewsListQueryHandler : IRequestHandler<NewsListQuery, Result<PagedList<NewsDto>>>
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
 
-    public GetNewsListQueryHandler(DataContext context, IMapper mapper)
+    public NewsListQueryHandler(DataContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
 
-    public async Task<Result<PagedList<NewsDto>>> Handle(GetNewsListQuery request, CancellationToken token)
+    public async Task<Result<PagedList<NewsDto>>> Handle(NewsListQuery request, CancellationToken token)
     {
         var query = _context.News
             .OrderBy(n => n.CreateDate)

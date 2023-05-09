@@ -19,7 +19,7 @@ public class RoomsController : BaseApiController
             .Where(c => c.Type == ClaimTypes.Role)
             .Select(c => c.Value);
         Console.WriteLine(roles);
-        return HandleResult(await Mediator.Send(new GetRoomListQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new RoomListQuery {Params = param}));
     }
     
     [HttpPost]

@@ -2,9 +2,9 @@
 using Application.Common.Pagination;
 using MediatR;
 
-namespace Application.NewsFolder.Queries.List;
+namespace Application.Things.Queries.List;
 
-public class GetNewsListQuery : IRequest<Result<PagedList<NewsDto>>>
+public class ListThingQuery : IRequest<Result<PagedList<ThingDto>>>
 {
     public PagingParams Params { get; set; }
 }

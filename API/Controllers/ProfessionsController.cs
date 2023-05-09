@@ -13,7 +13,7 @@ public class ProfessionsController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetProfessions([FromQuery] PagingParams param)
     {
-        return HandleResult(await Mediator.Send(new GetProfessionListQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new ProfessionListQuery {Params = param}));
     }
     
     [HttpPost]

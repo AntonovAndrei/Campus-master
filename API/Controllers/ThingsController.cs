@@ -16,7 +16,7 @@ public class ThingsController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetThings([FromQuery] PagingParams param)
     {
-        return HandleResult(await Mediator.Send(new GetListThingQuery {Params = param}));
+        return HandleResult(await Mediator.Send(new ListThingQuery {Params = param}));
     }
     
     [HttpPost]

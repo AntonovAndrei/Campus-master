@@ -1,6 +1,6 @@
 ﻿using Application.Photos.Command.Create;
 using Application.Photos.Command.Delete;
-using Application.Photos.Queries.Get;
+using Application.Photos.Queries.Detail;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -22,7 +22,7 @@ public class PhotosController : BaseApiController
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var result = await Mediator.Send(new GetPhotoQuery { Id = id });
+        var result = await Mediator.Send(new DetailPhotoQuery { Id = id });
 
         if (result.IsSuccess)
             return File(result.Value, "image/jpeg");

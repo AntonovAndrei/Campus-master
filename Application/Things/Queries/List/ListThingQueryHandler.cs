@@ -8,7 +8,7 @@ using Persistence;
 
 namespace Application.Things.Queries.List;
 
-public class ListThingQueryHandler : IRequestHandler<GetListThingQuery, Result<PagedList<ThingDto>>>
+public class ListThingQueryHandler : IRequestHandler<ListThingQuery, Result<PagedList<ThingDto>>>
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ public class ListThingQueryHandler : IRequestHandler<GetListThingQuery, Result<P
         _mapper = mapper;
     }
 
-    public async Task<Result<PagedList<ThingDto>>> Handle(GetListThingQuery request, CancellationToken token)
+    public async Task<Result<PagedList<ThingDto>>> Handle(ListThingQuery request, CancellationToken token)
     {
         var query = _context.Things.OrderBy(t => t.Name)
             .ProjectTo<ThingDto>(_mapper.ConfigurationProvider)
