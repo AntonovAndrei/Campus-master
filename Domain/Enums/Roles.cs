@@ -1,6 +1,4 @@
-﻿using Ardalis.SmartEnum;
-
-namespace Domain.Enums;
+﻿namespace Domain.Enums;
 
 public sealed class Roles
 {

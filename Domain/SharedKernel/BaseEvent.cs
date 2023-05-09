@@ -2,7 +2,7 @@
 
 namespace Domain.SharedKernel;
 
-public interface IDomainEvent : INotification
+public abstract class BaseEvent : INotification
 {
     
 }

@@ -19,6 +19,7 @@ public class Address : ValueObject
             nameof(house) + " can't be lees than 0 and more than 1000") : house;
         Corps = corps;
     }
+    
     public string Country { get; set; }
     public string Town { get; set; }
     public string Street { get; set; }

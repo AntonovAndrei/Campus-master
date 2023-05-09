@@ -1,6 +1,11 @@
-﻿namespace Application.Requests.Commands.ChangeStatus;
+﻿using Application.Common;
+using Domain.Enums;
+using MediatR;
 
-public class ChangeStatusCommand
+namespace Application.Requests.Commands.ChangeStatus;
+
+public class ChangeStatusCommand : IRequest<Result<Unit>>
 {
-    
+    public RequestStatus RequestStatus { get; set; }
+    public Guid RequestId { get; set; }
 }

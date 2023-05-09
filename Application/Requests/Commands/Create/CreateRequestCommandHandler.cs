@@ -2,6 +2,7 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Events;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -44,7 +45,7 @@ public class CreateRequestCommandHandler : IRequestHandler<CreateRequestCommand,
         var success = await _context.SaveChangesAsync() > 0;
         if (!success) return Result<Guid>.Failure("Failed to add request");
 
-        тут должно быть событие  что реквест создался
+        req.AddDomainEvent(new RequestCreatedEvent(req));
         
         return Result<Guid>.Success(req.Id);
     }
