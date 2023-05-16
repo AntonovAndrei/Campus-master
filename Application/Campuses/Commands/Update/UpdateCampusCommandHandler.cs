@@ -7,10 +7,10 @@ namespace Application.Campuses.Commands.Update;
 
 public class UpdateCampusCommandHandler: IRequestHandler<UpdateCampusCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public UpdateCampusCommandHandler(DataContext context, IMapper mapper)
+    public UpdateCampusCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

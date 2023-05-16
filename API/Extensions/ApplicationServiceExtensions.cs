@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Application.Common;
 using Application.Common.Behaviors;
+using Application.Common.Interfaces;
 using Application.Common.Mappings;
-using Application.Interfaces;
 using Application.Things.Commands;
 using Application.Things.Commands.Create;
 using Application.Things.Queries;
@@ -10,6 +10,7 @@ using Application.Things.Queries.List;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Photos;
+using Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -25,7 +26,7 @@ public static class ApplicationServiceExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, 
         IConfiguration config)
     {
-        services.AddDbContext<DataContext>(o =>
+        services.AddDbContext<CampusContext>(o =>
             o.UseNpgsql(config.GetConnectionString("DefaultConnection")));
         services.AddControllers(opt =>
         {
@@ -76,6 +77,7 @@ public static class ApplicationServiceExtensions
             config.AddProfile(new AssemblyMappingProfile(typeof(Result<object>).Assembly));
         });
         services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+        services.AddScoped<IUserAcessor, UserAccessor>();
 
         return services;
     } 

@@ -7,10 +7,10 @@ namespace Application.Rooms.Commands.Update;
 
 public class UpdateRoomCommandHandler: IRequestHandler<UpdateRoomCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public UpdateRoomCommandHandler(DataContext context, IMapper mapper)
+    public UpdateRoomCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

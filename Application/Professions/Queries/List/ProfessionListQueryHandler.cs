@@ -9,10 +9,10 @@ namespace Application.Professions.Queries.List;
 
 public class ProfessionListQueryHandler: IRequestHandler<ProfessionListQuery, Result<PagedList<ProfessionDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public ProfessionListQueryHandler(DataContext context, IMapper mapper)
+    public ProfessionListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

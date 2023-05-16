@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using AutoMapper;
 using Domain;
 using Domain.Entities;
@@ -14,12 +14,12 @@ namespace Application.Users.Residents.Commands.Create;
 
 public class CreateResidentCommandHandler : IRequestHandler<CreateResidentCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     private readonly IMapper _mapper;
     private readonly ILogger<CreateResidentCommandHandler> _logger;
 
-    public CreateResidentCommandHandler(UserManager<User> userManager, DataContext context, 
+    public CreateResidentCommandHandler(UserManager<User> userManager, CampusContext context, 
         IMapper mapper, ILogger<CreateResidentCommandHandler> logger, IPhotoAccessor photoAccessor)
     {
         _userManager = userManager;

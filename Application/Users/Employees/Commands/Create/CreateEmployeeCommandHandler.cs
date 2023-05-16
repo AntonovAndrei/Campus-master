@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using AutoMapper;
 using Domain;
 using Domain.Entities;
@@ -14,12 +14,12 @@ namespace Application.Users.Employees.Commands.Create;
 
 public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     private readonly IMapper _mapper;
     private readonly ILogger<CreateEmployeeCommandHandler> _logger;
 
-    public CreateEmployeeCommandHandler(UserManager<User> userManager, DataContext context, 
+    public CreateEmployeeCommandHandler(UserManager<User> userManager, CampusContext context, 
         IMapper mapper, ILogger<CreateEmployeeCommandHandler> logger, IPhotoAccessor photoAccessor)
     {
         _userManager = userManager;

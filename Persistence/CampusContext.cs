@@ -1,14 +1,18 @@
 ﻿using Domain;
 using Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Common;
 
 namespace Persistence;
 
-public class DataContext : IdentityDbContext<User>
+public class CampusContext : IdentityDbContext<User>
 {
-    public DataContext(DbContextOptions options) : base(options)
+    private readonly IMediator _mediator;
+    public CampusContext(DbContextOptions options, IMediator mediator) : base(options)
     {
+        _mediator = mediator;
     }
     
     public DbSet<Assistance> Assistances {get; set; }    
@@ -29,6 +33,13 @@ public class DataContext : IdentityDbContext<User>
     public DbSet<Passport> Passports { get; set; }
     public DbSet<RequestType> RequestTypes { get; set; }
 
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await _mediator.DispatchDomainEvents(this);
+
+        return await base.SaveChangesAsync(cancellationToken);
+    }
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

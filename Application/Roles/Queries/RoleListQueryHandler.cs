@@ -11,10 +11,10 @@ namespace Application.Roles.Queries;
 
 public class RoleListQueryHandler : IRequestHandler<RoleListQuery, Result<List<LookupRoleDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public RoleListQueryHandler(DataContext context, IMapper mapper)
+    public RoleListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

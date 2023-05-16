@@ -7,7 +7,7 @@ namespace Application.Rooms;
 public class RoomDto : LookupRoomDto
 {
     public DateTime? RepairDate { get; set; }
-    [Range(0, 10)]
+    [Range(0, 100)]
     public int? RoomRating { get; set; }
     public string? Remarks { get; set; }
 

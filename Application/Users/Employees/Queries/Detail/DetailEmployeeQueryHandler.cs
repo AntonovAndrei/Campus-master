@@ -9,10 +9,10 @@ namespace Application.Users.Employees.Queries.Detail;
 
 public class DetailEmployeeQueryHandler : IRequestHandler<DetailEmployeeQuery, Result<EmployeeDto>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public DetailEmployeeQueryHandler(DataContext context, IMapper mapper)
+    public DetailEmployeeQueryHandler(CampusContext context, IMapper mapper)
     {
         _mapper = mapper;
         _context = context;

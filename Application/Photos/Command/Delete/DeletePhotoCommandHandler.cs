@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using MediatR;
 using Persistence;
 
@@ -8,9 +8,9 @@ namespace Application.Photos.Command.Delete;
 public class DeletePhotoCommandHandler : IRequestHandler<DeletePhotoCommand, Result<Unit>>
 {
     private readonly IPhotoAccessor _photoAccessor;
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeletePhotoCommandHandler(IPhotoAccessor photoAccessor, DataContext context)
+    public DeletePhotoCommandHandler(IPhotoAccessor photoAccessor, CampusContext context)
     {
         _photoAccessor = photoAccessor;
         _context = context;

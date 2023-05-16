@@ -6,9 +6,9 @@ namespace Application.Professions.Commands.Delete;
 
 public class DeleteProfessionCommandHandler: IRequestHandler<DeleteProfessionCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeleteProfessionCommandHandler(DataContext context)
+    public DeleteProfessionCommandHandler(CampusContext context)
     {
         _context = context;
     }

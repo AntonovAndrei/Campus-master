@@ -9,11 +9,11 @@ namespace Application.Roles.Commands.AddRoleToEmployee;
 
 public class AddRoleToEmployeeCommandHandler : IRequestHandler<AddRoleToEmployeeCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     
 
-    public AddRoleToEmployeeCommandHandler(DataContext context, UserManager<User> userManager)
+    public AddRoleToEmployeeCommandHandler(CampusContext context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;

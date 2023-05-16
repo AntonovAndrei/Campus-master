@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Events;
@@ -11,11 +11,11 @@ namespace Application.Requests.Commands.Create;
 
 public class CreateRequestCommandHandler : IRequestHandler<CreateRequestCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
     private readonly IUserAcessor _userAcessor;
 
-    public CreateRequestCommandHandler(DataContext context, IMapper mapper, IUserAcessor userAcessor)
+    public CreateRequestCommandHandler(CampusContext context, IMapper mapper, IUserAcessor userAcessor)
     {
         _context = context;
         _mapper = mapper;

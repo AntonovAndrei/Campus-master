@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Application.Interfaces;
+namespace Application.Common.Interfaces;
 
 public interface IPhotoAccessor
 {

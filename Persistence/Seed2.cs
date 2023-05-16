@@ -6,7 +6,7 @@
 //
 // public class Seed2
 // {
-//     public static async Task SeedData(DataContext context,
+//     public static async Task SeedData(CampusContext context,
 //         UserManager<User> userManager, RoleManager<UserRole> roleManager)
 //     {
 //         #region Add roles

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using API.Services;
+using Application.Common.Policies;
 using Domain;
 using Domain.Entities;
 using Domain.Enums;
@@ -24,9 +25,9 @@ public static class IdentityServiceExtensions
             })
             .AddRoles<IdentityRole>()
             .AddRoleManager<RoleManager<IdentityRole>>()
-            .AddRoleStore<RoleStore<IdentityRole, DataContext, string>>()
+            .AddRoleStore<RoleStore<IdentityRole, CampusContext, string>>()
             .AddUserManager<UserManager<User>>()
-            .AddEntityFrameworkStores<DataContext>()
+            .AddEntityFrameworkStores<CampusContext>()
             .AddSignInManager<SignInManager<User>>()
             .AddDefaultTokenProviders();
 

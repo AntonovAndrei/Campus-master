@@ -6,9 +6,9 @@ namespace Application.Rooms.Commands.Delete;
 
 public class DeleteRoomCommandHandler : IRequestHandler<DeleteRoomCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeleteRoomCommandHandler(DataContext context)
+    public DeleteRoomCommandHandler(CampusContext context)
     {
         _context = context;
     }

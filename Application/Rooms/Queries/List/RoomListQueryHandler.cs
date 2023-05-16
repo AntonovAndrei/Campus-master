@@ -9,10 +9,10 @@ namespace Application.Rooms.Queries.List;
 
 public class RoomListQueryHandler : IRequestHandler<RoomListQuery, Result<PagedList<RoomDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public RoomListQueryHandler(DataContext context, IMapper mapper)
+    public RoomListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

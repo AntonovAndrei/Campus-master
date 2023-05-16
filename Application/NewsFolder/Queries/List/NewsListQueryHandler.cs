@@ -10,10 +10,10 @@ namespace Application.NewsFolder.Queries.List;
 
 public class NewsListQueryHandler : IRequestHandler<NewsListQuery, Result<PagedList<NewsDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public NewsListQueryHandler(DataContext context, IMapper mapper)
+    public NewsListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

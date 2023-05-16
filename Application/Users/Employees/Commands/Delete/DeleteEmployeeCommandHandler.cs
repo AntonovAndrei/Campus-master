@@ -8,10 +8,10 @@ namespace Application.Users.Employees.Commands.Delete;
 
 public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly ILogger<DeleteEmployeeCommandHandler> _logger;
     
-    public DeleteEmployeeCommandHandler(DataContext context, ILogger<DeleteEmployeeCommandHandler> logger)
+    public DeleteEmployeeCommandHandler(CampusContext context, ILogger<DeleteEmployeeCommandHandler> logger)
     {
         _context = context;
         _logger = logger;

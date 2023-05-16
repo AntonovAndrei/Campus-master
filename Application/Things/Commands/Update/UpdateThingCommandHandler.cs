@@ -7,10 +7,10 @@ namespace Application.Things.Commands.Update;
 
 public class UpdateThingCommandHandler : IRequestHandler<UpdateThingCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public UpdateThingCommandHandler(DataContext context, IMapper mapper)
+    public UpdateThingCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using Application.Photos.Queries.Detail;
 using MediatR;
 

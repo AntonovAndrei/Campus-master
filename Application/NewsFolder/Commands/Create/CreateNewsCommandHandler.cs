@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using AutoMapper;
 using Domain;
 using Domain.Entities;
@@ -10,11 +10,11 @@ namespace Application.NewsFolder.Commands.Create;
 
 public class CreateNewsCommandHandler : IRequestHandler<CreateNewsCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
     private readonly IPhotoAccessor _photoAccessor;
 
-    public CreateNewsCommandHandler(DataContext context, IMapper mapper, IPhotoAccessor photoAccessor)
+    public CreateNewsCommandHandler(CampusContext context, IMapper mapper, IPhotoAccessor photoAccessor)
     {
         _context = context;
         _mapper = mapper;

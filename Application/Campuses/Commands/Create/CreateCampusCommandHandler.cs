@@ -8,10 +8,10 @@ namespace Application.Campuses.Commands.Create;
 
 public class CreateCampusCommandHandler: IRequestHandler<CreateCampusCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public CreateCampusCommandHandler(DataContext context, IMapper mapper)
+    public CreateCampusCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

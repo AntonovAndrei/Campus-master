@@ -8,10 +8,10 @@ namespace Application.Rooms.Commands.Create;
 
 public class CreateRoomCommandHandler : IRequestHandler<CreateRoomCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public CreateRoomCommandHandler(DataContext context, IMapper mapper)
+    public CreateRoomCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

@@ -19,9 +19,9 @@ public class AccountController : ControllerBase
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly TokenService _tokenService;
-    private readonly DataContext _dbContext;
+    private readonly CampusContext _dbContext;
     
-    public AccountController(UserManager<User> userManager, DataContext dbContext,
+    public AccountController(UserManager<User> userManager, CampusContext dbContext,
         SignInManager<User> signInManager, TokenService tokenService)
     {
         _userManager = userManager;

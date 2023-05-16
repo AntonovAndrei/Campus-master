@@ -9,10 +9,10 @@ namespace Application.Requests.Queries.List;
 
 public class RequestListQueryHandler: IRequestHandler<RequestListQuery, Result<PagedList<RequestDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public RequestListQueryHandler(DataContext context, IMapper mapper)
+    public RequestListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

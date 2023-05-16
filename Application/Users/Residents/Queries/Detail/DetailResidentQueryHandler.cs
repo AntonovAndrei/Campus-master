@@ -9,10 +9,10 @@ namespace Application.Users.Residents.Queries.Detail;
 
 public class DetailResidentQueryHandler : IRequestHandler<DetailResidentQuery, Result<ResidentDto>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public DetailResidentQueryHandler(DataContext context, IMapper mapper)
+    public DetailResidentQueryHandler(CampusContext context, IMapper mapper)
     {
         _mapper = mapper;
         _context = context;

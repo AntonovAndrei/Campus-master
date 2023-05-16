@@ -6,9 +6,9 @@ namespace Application.Requests.RequestTypes.Commands.Delete;
 
 public class DeleteRequestTypeCommandHandler: IRequestHandler<DeleteRequestTypeCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeleteRequestTypeCommandHandler(DataContext context)
+    public DeleteRequestTypeCommandHandler(CampusContext context)
     {
         _context = context;
     }

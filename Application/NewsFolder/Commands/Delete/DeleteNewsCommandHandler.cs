@@ -6,9 +6,9 @@ namespace Application.NewsFolder.Commands.Delete;
 
 public class DeleteNewsCommandHandler : IRequestHandler<DeleteNewsCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeleteNewsCommandHandler(DataContext context)
+    public DeleteNewsCommandHandler(CampusContext context)
     {
         _context = context;
     }

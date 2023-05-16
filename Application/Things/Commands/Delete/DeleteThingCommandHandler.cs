@@ -6,9 +6,9 @@ namespace Application.Things.Commands.Delete;
 
 public class DeleteThingCommandHandler : IRequestHandler<DeleteThingCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
 
-    public DeleteThingCommandHandler(DataContext context)
+    public DeleteThingCommandHandler(CampusContext context)
     {
         _context = context;
     }

@@ -9,10 +9,10 @@ namespace Application.Users.Residents.Commands.Delete;
 
 public class DeleteResidentCommandHandler : IRequestHandler<DeleteResidentCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly ILogger<DeleteResidentCommandHandler> _logger;
     
-    public DeleteResidentCommandHandler(DataContext context, ILogger<DeleteResidentCommandHandler> logger)
+    public DeleteResidentCommandHandler(CampusContext context, ILogger<DeleteResidentCommandHandler> logger)
     {
         _context = context;
         _logger = logger;

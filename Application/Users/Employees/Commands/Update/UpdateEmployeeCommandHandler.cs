@@ -13,12 +13,12 @@ namespace Application.Users.Employees.Commands.Update;
 
 public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     private readonly IMapper _mapper;
     private readonly ILogger<UpdateEmployeeCommandHandler> _logger;
 
-    public UpdateEmployeeCommandHandler(UserManager<User> userManager, DataContext context, 
+    public UpdateEmployeeCommandHandler(UserManager<User> userManager, CampusContext context, 
         IMapper mapper, ILogger<UpdateEmployeeCommandHandler> logger)
     {
         _userManager = userManager;

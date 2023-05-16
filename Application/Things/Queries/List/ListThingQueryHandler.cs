@@ -10,10 +10,10 @@ namespace Application.Things.Queries.List;
 
 public class ListThingQueryHandler : IRequestHandler<ListThingQuery, Result<PagedList<ThingDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public ListThingQueryHandler(DataContext context, IMapper mapper)
+    public ListThingQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

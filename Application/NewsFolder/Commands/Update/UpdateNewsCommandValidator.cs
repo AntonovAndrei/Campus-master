@@ -6,6 +6,6 @@ public class UpdateNewsCommandValidator : AbstractValidator<UpdateNewsCommand>
 {
     public UpdateNewsCommandValidator()
     {
-        RuleFor(n => n.NewsDto).SetValidator(new NewsDtoValidator());
+        RuleFor(n => n.NewsDto).SetValidator(new CreateNewsDtoValidator());
     }
 }

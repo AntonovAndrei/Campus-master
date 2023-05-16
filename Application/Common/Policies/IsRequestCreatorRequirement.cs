@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Infrastructure.Security;
+namespace Application.Common.Policies;
 
 public class IsRequestCreatorRequirement : IAuthorizationRequirement
 {
@@ -13,10 +13,10 @@ public class IsRequestCreatorRequirement : IAuthorizationRequirement
 
 public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequestCreatorRequirement>
 {
-    private readonly DataContext _dbContext;
+    private readonly CampusContext _dbContext;
     private readonly IHttpContextAccessor _httpContextAccessor;
     
-    public IsRequestCreatorRequirementHandler(DataContext dbContext, 
+    public IsRequestCreatorRequirementHandler(CampusContext dbContext, 
         IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;

@@ -2,9 +2,9 @@
 
 namespace Application.NewsFolder;
 
-public class NewsDtoValidator : AbstractValidator<NewsDto>
+public class CreateNewsDtoValidator : AbstractValidator<NewsDto>
 {
-    public NewsDtoValidator()
+    public CreateNewsDtoValidator()
     {
         RuleFor(n => n.Title)
             .NotEmpty().WithMessage("Title is required.");

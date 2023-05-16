@@ -1,10 +1,14 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Domain.SharedKernel;
 
 public abstract class BaseEntity
 {
     public Guid Id { get; set; }
     
-    private readonly List<BaseEvent> _domainEvents = new List<BaseEvent>();
+    private readonly List<BaseEvent> _domainEvents = new();
+    
+    [NotMapped]
     public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     public void AddDomainEvent(BaseEvent eventItem)

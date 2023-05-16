@@ -8,10 +8,10 @@ namespace Application.Requests.Commands.ChangeStatus;
 
 public class ChangeStatusCommandHandler : IRequestHandler<ChangeStatusCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public ChangeStatusCommandHandler(DataContext context, IMapper mapper)
+    public ChangeStatusCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

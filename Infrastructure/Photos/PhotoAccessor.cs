@@ -1,5 +1,5 @@
 ﻿using System.Net.Mime;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.Extensions.Logging;

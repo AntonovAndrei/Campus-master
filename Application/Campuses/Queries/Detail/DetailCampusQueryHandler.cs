@@ -9,10 +9,10 @@ namespace Application.Campuses.Queries.Detail;
 
 public class DetailCampusQueryHandler : IRequestHandler<DetailCampusQuery, Result<CampusDto>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public DetailCampusQueryHandler(DataContext context, IMapper mapper)
+    public DetailCampusQueryHandler(CampusContext context, IMapper mapper)
     {
         _mapper = mapper;
         _context = context;

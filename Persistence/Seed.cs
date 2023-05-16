@@ -8,7 +8,7 @@ namespace Persistence;
 
 public class Seed
 {
-    public static async Task SeedData(DataContext context,
+    public static async Task SeedData(CampusContext context,
         UserManager<User>? userManager, RoleManager<IdentityRole> roleManager)
     {
         

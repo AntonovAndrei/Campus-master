@@ -8,10 +8,10 @@ namespace Application.Professions.Commands.Create;
 
 public class CreateProfessionCommandHandler: IRequestHandler<CreateProfessionCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public CreateProfessionCommandHandler(DataContext context, IMapper mapper)
+    public CreateProfessionCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

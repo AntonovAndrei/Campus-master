@@ -7,10 +7,10 @@ namespace Application.Professions.Commands.Update;
 
 public class UpdateProfessionCommandHandler: IRequestHandler<UpdateProfessionCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public UpdateProfessionCommandHandler(DataContext context, IMapper mapper)
+    public UpdateProfessionCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

@@ -9,11 +9,11 @@ namespace Application.Roles.Commands.AddRoleToResident;
 
 public class AddRoleToResidentCommandHandler : IRequestHandler<AddRoleToResidentCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     
 
-    public AddRoleToResidentCommandHandler(DataContext context, UserManager<User> userManager)
+    public AddRoleToResidentCommandHandler(CampusContext context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;

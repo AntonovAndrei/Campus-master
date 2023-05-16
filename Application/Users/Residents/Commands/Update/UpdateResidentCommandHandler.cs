@@ -1,6 +1,5 @@
 ﻿using Application.Common;
 using AutoMapper;
-using Domain;
 using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -12,12 +11,12 @@ namespace Application.Users.Residents.Commands.Update;
 
 public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     private readonly IMapper _mapper;
     private readonly ILogger<UpdateResidentCommandHandler> _logger;
 
-    public UpdateResidentCommandHandler(UserManager<User> userManager, DataContext context, 
+    public UpdateResidentCommandHandler(UserManager<User> userManager, CampusContext context, 
         IMapper mapper, ILogger<UpdateResidentCommandHandler> logger)
     {
         _userManager = userManager;
@@ -31,7 +30,7 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         var user = await _context.Users
             .Where(x => x.Email.Equals(request.ResidentDto.Email))
             .FirstOrDefaultAsync(cancellationToken);
-        возможно тут ошибка, нужно проверить, так как при маппинге id игнорируеться
+            //возможно тут ошибка, нужно проверить, так как при маппинге id игнорируеться
         var resident = await _context.Residents.FindAsync(request.ResidentDto.Id, cancellationToken);
         if(resident == null) return Result<Unit>.Failure("There is no resident with this id");
         

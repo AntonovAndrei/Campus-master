@@ -13,7 +13,7 @@ public class Room : BaseEntity
     public int Block { get; set; }
     public string BlockCode { get; set; }
     public DateTime? RepairDate { get; set; }
-    [Range(0, 10)]
+    [Range(0, 100)]
     public int? RoomRating { get; set; }
     public string? Remarks { get; set; }
 

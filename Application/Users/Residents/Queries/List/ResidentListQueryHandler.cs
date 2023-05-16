@@ -10,10 +10,10 @@ namespace Application.Users.Residents.Queries.List;
 
 public class ResidentListQueryHandler : IRequestHandler<ResidentListQuery, Result<PagedList<ResidentDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public ResidentListQueryHandler(DataContext context, IMapper mapper)
+    public ResidentListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

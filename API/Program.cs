@@ -18,7 +18,7 @@ namespace API
             
             try 
             {
-                var context = services.GetRequiredService<DataContext>();
+                var context = services.GetRequiredService<CampusContext>();
                 var userManager = services.GetRequiredService<UserManager<User>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                 await context.Database.MigrateAsync();

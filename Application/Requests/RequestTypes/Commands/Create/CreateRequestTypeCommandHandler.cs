@@ -8,10 +8,10 @@ namespace Application.Requests.RequestTypes.Commands.Create;
 
 public class CreateRequestTypeCommandHandler: IRequestHandler<CreateRequestTypeCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public CreateRequestTypeCommandHandler(DataContext context, IMapper mapper)
+    public CreateRequestTypeCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

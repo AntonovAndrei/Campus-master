@@ -10,10 +10,10 @@ namespace Application.Users.Employees.Queries.List;
 
 public class EmployeeListQueryHandler : IRequestHandler<EmployeeListQuery, Result<PagedList<EmployeeDto>>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public EmployeeListQueryHandler(DataContext context, IMapper mapper)
+    public EmployeeListQueryHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

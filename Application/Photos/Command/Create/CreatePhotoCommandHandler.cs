@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using Domain;
 using Domain.Entities;
 using MediatR;
@@ -10,8 +10,8 @@ namespace Application.Photos.Command.Create;
 public class CreatePhotoCommandHandler : IRequestHandler<CreatePhotoCommand, Result<Guid>>
 {
     private readonly IPhotoAccessor _photoAccessor;
-    private readonly DataContext _context;
-    public CreatePhotoCommandHandler(IPhotoAccessor photoAccessor, DataContext context)
+    private readonly CampusContext _context;
+    public CreatePhotoCommandHandler(IPhotoAccessor photoAccessor, CampusContext context)
     {
         _photoAccessor = photoAccessor;
         _context = context;

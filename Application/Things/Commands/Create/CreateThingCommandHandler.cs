@@ -9,10 +9,10 @@ namespace Application.Things.Commands.Create;
 
 public class CreateThingCommandHandler: IRequestHandler<CreateThingCommand, Result<Guid>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly IMapper _mapper;
 
-    public CreateThingCommandHandler(DataContext context, IMapper mapper)
+    public CreateThingCommandHandler(CampusContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

@@ -9,11 +9,11 @@ namespace Application.Roles.Commands.DeleteRoleFromEmployee;
 
 public class DeleteRoleFromEmployeeCommandHandler : IRequestHandler<DeleteRoleFromEmployeeCommand, Result<Unit>>
 {
-    private readonly DataContext _context;
+    private readonly CampusContext _context;
     private readonly UserManager<User> _userManager;
     
 
-    public DeleteRoleFromEmployeeCommandHandler(DataContext context, UserManager<User> userManager)
+    public DeleteRoleFromEmployeeCommandHandler(CampusContext context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;
