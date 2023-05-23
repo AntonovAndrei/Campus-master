@@ -25,9 +25,7 @@ public class BaseApiController : ControllerBase
     
         if (result.IsSuccess && result.Value == null)
             return NotFound();
-
-        //переделать так как не логично, а может и логично тк не всегда ошибка выкидываеться при неправильном ID, а могут быть проблемы с бд
-        //throw new ValidationException(result.Error);
+        
         return BadRequest(result.Error);
     }
     

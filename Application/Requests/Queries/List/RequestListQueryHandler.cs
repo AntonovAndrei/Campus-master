@@ -20,7 +20,8 @@ public class RequestListQueryHandler: IRequestHandler<RequestListQuery, Result<P
 
     public async Task<Result<PagedList<RequestDto>>> Handle(RequestListQuery request, CancellationToken token)
     {
-        var query = _context.Requests.OrderBy(t => t.CreatedDate)
+        var query = _context.Requests
+            .OrderBy(t => t.CreatedDate)
             .ProjectTo<RequestDto>(_mapper.ConfigurationProvider)
             .AsQueryable();
         return Result<PagedList<RequestDto>>.Success(

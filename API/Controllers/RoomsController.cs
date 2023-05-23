@@ -14,11 +14,6 @@ public class RoomsController : BaseApiController
     [HttpGet]
     public async Task<IActionResult> GetRooms([FromQuery] PagingParams param)
     {
-        var identity = (ClaimsIdentity)User.Identity;
-        var roles = ((ClaimsIdentity)User.Identity).Claims
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value);
-        Console.WriteLine(roles);
         return HandleResult(await Mediator.Send(new RoomListQuery {Params = param}));
     }
     

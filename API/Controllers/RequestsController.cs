@@ -5,6 +5,7 @@ using Application.Requests.Commands.Create;
 using Application.Requests.Commands.Delete;
 using Application.Requests.Commands.Update;
 using Application.Requests.Queries.List;
+using Application.Requests.Queries.ListById;
 using Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +19,23 @@ public class RequestsController : BaseApiController
         return HandleResult(await Mediator.Send(new RequestListQuery {Params = param}));
     }
     
-    [HttpPost]
-    public async Task<IActionResult> CreateRequests(CreateRequestDto residentDto)
+    [HttpGet("by-curent-resident")]
+    public async Task<IActionResult> GetCurrentResidentList([FromQuery]PagingParams param)
     {
-        return HandleResult(await Mediator.Send(new CreateRequestCommand {CreateRequestDto = residentDto}));
+        return HandleResult(await Mediator.Send(new RequestCurrentResidentListQuery {Params = param}));
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateRequests(CreateRequestDto requesttDto)
+    {
+        return HandleResult(await Mediator.Send(new CreateRequestCommand {CreateRequestDto = requesttDto}));
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateRequests(Guid id, CreateRequestDto residentDto)
+    public async Task<IActionResult> UpdateRequests(Guid id, CreateRequestDto requesttDto)
     {
-        residentDto.Id = id;
-        return HandleResult(await Mediator.Send(new UpdateRequestCommand {CreateRequestDto = residentDto}));
+        requesttDto.Id = id;
+        return HandleResult(await Mediator.Send(new UpdateRequestCommand {CreateRequestDto = requesttDto}));
     }
     
     [HttpPut("{id}/status/{status}")]
