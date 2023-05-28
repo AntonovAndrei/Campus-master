@@ -13,6 +13,6 @@ public class CreateRequestDto : IMapWith<Request>
 
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<RequestDto, Request>();
+        profile.CreateMap<CreateRequestDto, Request>();
     }
 }

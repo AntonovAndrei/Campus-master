@@ -3,6 +3,8 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
+using Serilog;
+using Serilog.Events;
 
 namespace API
 {
@@ -10,6 +12,12 @@ namespace API
     {
         public static async Task Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                .WriteTo.File("CampusWebAppLog-.txt", rollingInterval:
+                    RollingInterval.Day)
+                .CreateLogger();
+            
             var host = CreateHostBuilder(args).Build();
 
             using var scope = host.Services.CreateScope();
@@ -26,8 +34,7 @@ namespace API
             }
             catch (Exception ex)
             {
-                var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex, "An error occured during migraiton");
+                Log.Fatal(ex, "An error occured during migraiton");
             }
 
             await host.RunAsync();
@@ -35,6 +42,7 @@ namespace API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -7,6 +7,7 @@ using Application.Requests.Commands.Update;
 using Application.Requests.Queries.List;
 using Application.Requests.Queries.ListById;
 using Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -31,6 +32,7 @@ public class RequestsController : BaseApiController
         return HandleResult(await Mediator.Send(new CreateRequestCommand {CreateRequestDto = requesttDto}));
     }
     
+    [Authorize(Policy = "MustBeRequestCreator")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateRequests(Guid id, CreateRequestDto requesttDto)
     {
@@ -38,12 +40,14 @@ public class RequestsController : BaseApiController
         return HandleResult(await Mediator.Send(new UpdateRequestCommand {CreateRequestDto = requesttDto}));
     }
     
+    [Authorize(Policy = "MustBeRequestCreator")]
     [HttpPut("{id}/status/{status}")]
     public async Task<IActionResult> ChangeStatus(Guid id, RequestStatus status)
     {
         return HandleResult(await Mediator.Send(new ChangeStatusCommand {RequestId = id, RequestStatus = status}));
     }
     
+    [Authorize(Policy = "MustBeRequestCreator")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteRequests(Guid id)
     {

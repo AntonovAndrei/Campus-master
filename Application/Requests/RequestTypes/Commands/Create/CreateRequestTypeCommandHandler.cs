@@ -19,7 +19,7 @@ public class CreateRequestTypeCommandHandler: IRequestHandler<CreateRequestTypeC
 
     public async Task<Result<Guid>> Handle(CreateRequestTypeCommand request, CancellationToken cancellationToken)
     {
-        var requestType = new RequestType() {Name = request.RequestTypeDto.Name};
+        var requestType = _mapper.Map<RequestType>(request.RequestTypeDto);
         _context.RequestTypes.Add(requestType);
 
         var success = await _context.SaveChangesAsync() > 0;

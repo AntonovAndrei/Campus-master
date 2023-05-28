@@ -23,7 +23,8 @@ public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequest
         _dbContext = dbContext;
     }
 
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsRequestCreatorRequirement requirement)
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
+        IsRequestCreatorRequirement requirement)
     {
         var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId == null) return Task.CompletedTask;
@@ -40,7 +41,8 @@ public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequest
 
         var request = _dbContext.Requests
             .AsNoTracking()
-            .SingleOrDefaultAsync(r => r.CreatorResidentId.Equals(residentId) && r.Id.Equals(requestId))
+            .SingleOrDefaultAsync(r => r.CreatorResidentId.Equals(residentId) 
+                                       && r.Id.Equals(requestId))
             .Result;
         
         if (request != null) context.Succeed(requirement); 

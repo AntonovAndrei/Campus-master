@@ -3,6 +3,7 @@ using Application.Common.Pagination;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Requests.Queries.List;
@@ -21,6 +22,9 @@ public class RequestListQueryHandler: IRequestHandler<RequestListQuery, Result<P
     public async Task<Result<PagedList<RequestDto>>> Handle(RequestListQuery request, CancellationToken token)
     {
         var query = _context.Requests
+            .Include(r => r.Employee)
+            .Include(r => r.Resident)
+            .Include(r => r.Type)
             .OrderBy(t => t.CreatedDate)
             .ProjectTo<RequestDto>(_mapper.ConfigurationProvider)
             .AsQueryable();

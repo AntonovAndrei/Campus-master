@@ -70,7 +70,11 @@ public static class ApplicationServiceExtensions
         services.AddMediatR(typeof(ListThingQuery).Assembly);
         //services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssemblies(new[] {typeof(ListThingQuery).Assembly});
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), 
+            typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>),
+            typeof(LoggingBehavior<,>));
+        
         services.AddAutoMapper(config =>
         {
             config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
@@ -78,6 +82,7 @@ public static class ApplicationServiceExtensions
         });
         services.AddScoped<IPhotoAccessor, PhotoAccessor>();
         services.AddScoped<IUserAcessor, UserAccessor>();
+        
 
         return services;
     } 

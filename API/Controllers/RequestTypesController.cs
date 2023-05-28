@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
+[Route("request-types")]
 public class RequestTypesController : BaseApiController
 {
     [HttpGet]
