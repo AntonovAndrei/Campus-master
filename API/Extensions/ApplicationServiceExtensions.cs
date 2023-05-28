@@ -82,7 +82,7 @@ public static class ApplicationServiceExtensions
         });
         services.AddScoped<IPhotoAccessor, PhotoAccessor>();
         services.AddScoped<IUserAcessor, UserAccessor>();
-        
+        services.AddSignalR();
 
         return services;
     } 
