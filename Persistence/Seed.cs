@@ -21,7 +21,7 @@ public class Seed
                 await roleManager.CreateAsync(new IdentityRole(){Name = r});
         }
         
-        if(context.Violations.Any())
+        if(context.Users.Any())
             return;
 
         

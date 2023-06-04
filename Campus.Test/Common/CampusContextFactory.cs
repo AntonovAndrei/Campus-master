@@ -8,8 +8,6 @@ namespace Campus.Test.Common;
 
 public class CampusContextFactory
 {
-    
-    
     private static readonly Mock<IMediator> _mediator = new  Mock<IMediator>();
     public static Guid UserAId = Guid.NewGuid();
     public static Guid UserBId = Guid.NewGuid();

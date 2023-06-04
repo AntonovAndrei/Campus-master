@@ -11,9 +11,9 @@ public class CampusesController : BaseApiController
 {
     
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetCampus([FromQuery] Guid campusId)
+    public async Task<IActionResult> GetCampus(Guid id)
     {
-        return HandleResult(await Mediator.Send(new DetailCampusQuery() {CampusId = campusId}));
+        return HandleResult(await Mediator.Send(new DetailCampusQuery() {CampusId = id}));
     }
     
     [HttpPost]

@@ -13,7 +13,8 @@ public class LoggingBehavior<TRequest, TResponse>
     public LoggingBehavior(IUserAcessor userAcessor) =>
         _userAcessor = userAcessor;
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, 
+		RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var requestName = typeof(TRequest).Name;
         var userId = _userAcessor.GetUserId();

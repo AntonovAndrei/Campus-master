@@ -6,5 +6,5 @@ namespace Application.Users.Employees.Commands.Update;
 
 public class UpdateEmployeeCommand : IRequest<Result<Unit>>
 {
-    public CreateEmployeeDto EmployeeDto { get; set; }
+    public UpdateEmployeeDto EmployeeDto { get; set; }
 }

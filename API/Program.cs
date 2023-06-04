@@ -12,11 +12,11 @@ namespace API
     {
         public static async Task Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .WriteTo.File("CampusWebAppLog-.txt", rollingInterval:
-                    RollingInterval.Day)
-                .CreateLogger();
+            // Log.Logger = new LoggerConfiguration()
+            //     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            //     .WriteTo.File("CampusWebAppLog-.txt", rollingInterval:
+            //         RollingInterval.Day)
+            //     .CreateLogger();
             
             var host = CreateHostBuilder(args).Build();
 
@@ -42,7 +42,7 @@ namespace API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog()
+                //.UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

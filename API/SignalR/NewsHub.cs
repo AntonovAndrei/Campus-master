@@ -13,6 +13,7 @@ public class NewsHub : Hub
     public NewsHub(IMediator mediator) 
         => _mediator = mediator;
 
+    
     public async Task PublishNews(NewsDto newsDto)
     {
         var createdNewsId = await _mediator.Send(new CreateNewsCommand {NewsDto = newsDto});

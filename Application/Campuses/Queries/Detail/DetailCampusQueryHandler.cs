@@ -22,6 +22,7 @@ public class DetailCampusQueryHandler : IRequestHandler<DetailCampusQuery, Resul
     {
         return Result<CampusDto>.Success(
             await _context.Campuses
+                .AsNoTracking()
                 .Where(i => i.Id == request.CampusId)
                 .ProjectTo<CampusDto>(_mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync(cancellationToken)

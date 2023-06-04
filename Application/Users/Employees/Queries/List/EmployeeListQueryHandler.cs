@@ -23,7 +23,7 @@ public class EmployeeListQueryHandler : IRequestHandler<EmployeeListQuery, Resul
     {
         IQueryable<EmployeeDto> query;
 
-        //Отрефакторить!!!
+        //Отрефакторить!
         if (request.Params.FullName != null && !request.Params.FullName.Equals(""))
         {
             query = _context.Employees

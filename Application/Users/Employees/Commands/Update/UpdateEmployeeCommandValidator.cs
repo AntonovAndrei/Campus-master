@@ -7,6 +7,6 @@ public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCo
     public UpdateEmployeeCommandValidator()
     {
         RuleFor(f => f.EmployeeDto)
-            .SetValidator(new CreateEmployeeDtoValidator());
+            .SetValidator(new UpdateEmployeeDtoValidator<UpdateEmployeeDto>());
     }
 }

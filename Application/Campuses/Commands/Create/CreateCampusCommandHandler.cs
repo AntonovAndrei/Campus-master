@@ -19,7 +19,7 @@ public class CreateCampusCommandHandler: IRequestHandler<CreateCampusCommand, Re
 
     public async Task<Result<Guid>> Handle(CreateCampusCommand request, CancellationToken cancellationToken)
     {
-        var campus = new Campus() {Name = request.CampusDto.Name};
+        var campus = _mapper.Map<Campus>(request.CampusDto);
         _context.Campuses.Add(campus);
 
         var success = await _context.SaveChangesAsync() > 0;

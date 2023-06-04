@@ -22,4 +22,4 @@ public static class MediatorExtensions
         foreach (var domainEvent in domainEvents)
             await mediator.Publish(domainEvent);
     }
-}
+} 

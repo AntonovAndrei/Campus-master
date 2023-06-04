@@ -43,10 +43,12 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
             .FirstOrDefaultAsync(cancellationToken);
         if(employee == null) return Result<Unit>.Failure("There is no employee with this id");
 
-        var photo = await _context.Photos.FindAsync(request.EmployeeDto.PhotoId);
-        if(photo.Equals(null))
-            return Result<Unit>.Failure("There is no photo with such id"); 
-        
+        if (request.EmployeeDto.PhotoId != null)
+        {
+            var photo = await _context.Photos.FindAsync(request.EmployeeDto.PhotoId);
+            if(photo == null)
+                return Result<Unit>.Failure("There is no photo with such id"); 
+        }
         
         var newCampuses = await _context.Campuses
             .Where(i => request.EmployeeDto.CampusesIds.Contains(i.Id))
@@ -63,7 +65,6 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
         foreach (var n in addedCampuses)
             employee.Campuses.Add(n);
 
-        
         var dbProfessions = await _context.Professions
             .Where(i => request.EmployeeDto.ProfessionIds.Contains(i.Id))
             .ToListAsync(cancellationToken);
