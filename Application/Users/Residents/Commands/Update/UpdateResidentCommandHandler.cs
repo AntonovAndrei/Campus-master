@@ -29,9 +29,14 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
     {
         var user = await _context.Users
             .Where(x => x.Email.Equals(request.ResidentDto.Email))
+            .Include(p => p.Passport)
             .FirstOrDefaultAsync(cancellationToken);
             //возможно тут ошибка, нужно проверить, так как при маппинге id игнорируеться
-        var resident = await _context.Residents.FindAsync(request.ResidentDto.Id, cancellationToken);
+        var resident = await _context.Residents
+            .Where(i => i.Id.Equals(request.ResidentDto.Id))
+            .Include(c => c.Campus)
+            .Include(r => r.Room)
+            .FirstOrDefaultAsync(cancellationToken);
         if(resident == null) return Result<Unit>.Failure("There is no resident with this id");
         
         var campus = await _context.Campuses
@@ -44,12 +49,25 @@ public class UpdateResidentCommandHandler : IRequestHandler<UpdateResidentComman
         var room = await _context.Rooms
             .Where(i => request.ResidentDto.RoomId.Equals(i.Id))
             .FirstOrDefaultAsync(cancellationToken);
-        if(room != null)
+        if(room == null)
             return Result<Unit>.Failure("No room with such id");
         resident.Room = room;
         
-        _mapper.Map(user, request.ResidentDto);
-        _mapper.Map(resident, request.ResidentDto);
+        if (request.ResidentDto.PhotoId != null)
+        {
+            var photo = await _context.Photos
+                .Where(i => i.Id == request.ResidentDto.PhotoId)
+                .FirstOrDefaultAsync(cancellationToken);
+            
+            if(photo == null)
+                return Result<Unit>.Failure("Incorrect photo id");
+
+            user.PhotoId = request.ResidentDto.PhotoId;
+            user.Photo = photo;
+        }
+        
+        _mapper.Map(request.ResidentDto, user);
+        _mapper.Map(request.ResidentDto, resident);
         
         var userResult = await _userManager.UpdateAsync(user);
         if (!userResult.Succeeded) return Result<Unit>.Failure("Problem updating user");

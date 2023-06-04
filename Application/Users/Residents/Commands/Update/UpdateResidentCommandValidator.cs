@@ -7,6 +7,6 @@ public class UpdateResidentCommandValidator : AbstractValidator<UpdateResidentCo
     public UpdateResidentCommandValidator()
     {
         RuleFor(c => c.ResidentDto)
-            .SetValidator(new CreateResidentDtoValidator());
+            .SetValidator(new UpdateResidentDtoValidator<UpdateResidentDto>());
     }
 }

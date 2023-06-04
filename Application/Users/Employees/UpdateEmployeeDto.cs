@@ -17,9 +17,9 @@ public class UpdateEmployeeDto : UserDto
     
     public override void Mapping(Profile profile)
     {
-        profile.CreateMap<CreateEmployeeDto, Employee>()
+        profile.CreateMap<UpdateEmployeeDto, Employee>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
-        profile.CreateMap<CreateEmployeeDto, User>()
+        profile.CreateMap<UpdateEmployeeDto, User>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(s => s.LastName + " " + s.FirstName + " " + s.MiddleName));
     }

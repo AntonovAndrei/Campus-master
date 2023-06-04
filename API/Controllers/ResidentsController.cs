@@ -30,7 +30,7 @@ public class ResidentsController : BaseApiController
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateResidents(Guid id, CreateResidentDto residentDto)
+    public async Task<IActionResult> UpdateResidents(Guid id, UpdateResidentDto residentDto)
     {
         residentDto.Id = id;
         return HandleResult(await Mediator.Send(new UpdateResidentCommand {ResidentDto = residentDto}));

@@ -50,9 +50,10 @@ public class CreateResidentCommandHandler : IRequestHandler<CreateResidentComman
         var room = await _context.Rooms
             .Where(i => request.ResidentDto.RoomId.Equals(i.Id))
             .FirstOrDefaultAsync(cancellationToken);
-        if(room != null)
+        if(room == null)
             return Result<Guid>.Failure("No room with such id");
         resident.Room = room;
+        resident.RoomName = room.Block + room.BlockCode;
 
         if (request.ResidentDto.PhotoId != null)
         {

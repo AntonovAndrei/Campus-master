@@ -30,7 +30,7 @@ public class EmployeesController : BaseApiController
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateEmployees(Guid id, CreateEmployeeDto employeeDto)
+    public async Task<IActionResult> UpdateEmployees(Guid id, UpdateEmployeeDto employeeDto)
     {
         employeeDto.Id = id;
         return HandleResult(await Mediator.Send(new UpdateEmployeeCommand {EmployeeDto = employeeDto}));
