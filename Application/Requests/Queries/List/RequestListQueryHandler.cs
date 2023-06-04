@@ -23,11 +23,14 @@ public class RequestListQueryHandler: IRequestHandler<RequestListQuery, Result<P
     {
         var query = _context.Requests
             .Include(r => r.Employee)
+                .ThenInclude(u => u.User)
             .Include(r => r.Resident)
+                .ThenInclude(u => u.User)
             .Include(r => r.Type)
             .OrderBy(t => t.CreatedDate)
             .ProjectTo<RequestDto>(_mapper.ConfigurationProvider)
             .AsQueryable();
+        
         return Result<PagedList<RequestDto>>.Success(
             await PagedList<RequestDto>.CreateAsync(query, request.Params.PageNumber, request.Params.PageSize));
     }

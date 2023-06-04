@@ -24,6 +24,9 @@ public class RequestDto : IMapWith<Request>
     
     public void Mapping(Profile profile)
     {
-        profile.CreateMap<Request, RequestDto>();
+        profile.CreateMap<Request, RequestDto>()
+            .ForMember(r => r.Resident, o => o.MapFrom(s => s.Resident))
+            .ForMember(r => r.Employee, o => o.MapFrom(s => s.Employee))
+            .ForMember(d => d.RequestType, opt => opt.MapFrom(s => s.Type));
     }
 }

@@ -7,6 +7,7 @@ public class RequestCreatedEventHandler : INotificationHandler<RequestCreatedEve
 {
     public Task Handle(RequestCreatedEvent notification, CancellationToken cancellationToken)
     {
+        Console.WriteLine("Srabotalo srabotalo");
         throw new NotImplementedException();
     }
 }
