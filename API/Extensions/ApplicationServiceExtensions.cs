@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using API.SignalR;
 using Application.Common;
 using Application.Common.Behaviors;
 using Application.Common.Interfaces;
@@ -82,6 +83,7 @@ public static class ApplicationServiceExtensions
         });
         services.AddScoped<IPhotoAccessor, PhotoAccessor>();
         services.AddScoped<IUserAcessor, UserAccessor>();
+        services.AddScoped<IRequestHub, RequestHub>();
         services.AddSignalR();
 
         return services;

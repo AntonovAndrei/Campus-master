@@ -8,6 +8,9 @@ public class RequestStatusChangedEventHandler : INotificationHandler<RequestStat
 {
     public Task Handle(RequestStatusChangedEvent notification, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        Console.Beep(5000, 1000);
+        Console.WriteLine("Srabotalo srabotalo");
+        
+        return Task.CompletedTask;
     }
 }

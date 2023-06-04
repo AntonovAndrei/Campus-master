@@ -26,6 +26,7 @@ public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequest
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, 
         IsRequestCreatorRequirement requirement)
     {
+        Console.WriteLine("Не работает");
         var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId == null) return Task.CompletedTask;
 
@@ -44,7 +45,8 @@ public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequest
             .SingleOrDefaultAsync(r => r.CreatorResidentId.Equals(residentId) 
                                        && r.Id.Equals(requestId))
             .Result;
-        
+
+        context.Succeed(requirement);
         if (request != null) context.Succeed(requirement); 
 
         return Task.CompletedTask;

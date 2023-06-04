@@ -66,8 +66,6 @@ public static class IdentityServiceExtensions
                 {
                     policy.Requirements.Add(new IsRequestCreatorRequirement());
                 });
-            options.AddPolicy("RequireStudentCouncilRole",
-                policy => policy.RequireRole(Roles.StudentCouncil));
         });
 
         return services;

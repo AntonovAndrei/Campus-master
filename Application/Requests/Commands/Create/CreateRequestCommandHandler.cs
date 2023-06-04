@@ -42,11 +42,11 @@ public class CreateRequestCommandHandler : IRequestHandler<CreateRequestCommand,
         
         _context.Requests.Add(req);
         
+        req.AddDomainEvent(new RequestCreatedEvent(req));
+
         var success = await _context.SaveChangesAsync() > 0;
         if (!success) return Result<Guid>.Failure("Failed to add request");
 
-        req.AddDomainEvent(new RequestCreatedEvent(req));
-        
         return Result<Guid>.Success(req.Id);
     }
 }

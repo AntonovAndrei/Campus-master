@@ -24,11 +24,11 @@ public class ChangeStatusCommandHandler : IRequestHandler<ChangeStatusCommand, R
 
         req.RequestStatus = request.RequestStatus;
             
+        req.AddDomainEvent(new RequestStatusChangedEvent(req));
+
         var success = await _context.SaveChangesAsync(cancellationToken) > 0;
         if (!success) return Result<Unit>.Failure("Failed to request status change");
 
-        req.AddDomainEvent(new RequestStatusChangedEvent(req));
-        
         return Result<Unit>.Success(_mapper.Map<Unit>(Unit.Value));
     }
 }
