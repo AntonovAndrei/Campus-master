@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-//[Authorize(Roles = Roles.StudentCouncil)]
+[Authorize(Roles = Roles.SupplyManager)]
 public class ThingsController : BaseApiController
 {
     [HttpGet]

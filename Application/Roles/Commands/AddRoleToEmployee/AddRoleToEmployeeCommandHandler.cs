@@ -29,7 +29,7 @@ public class AddRoleToEmployeeCommandHandler : IRequestHandler<AddRoleToEmployee
             .Include(u => u.User)
             .Select(u => u.User)
             .FirstOrDefaultAsync();
-        if (user == null) return Result<Unit>.Failure("There is no user with this id");
+        if (user == null) return Result<Unit>.Failure("There is no employee with this id");
 
         var result = await _userManager.AddToRoleAsync(user, role.Name);
 

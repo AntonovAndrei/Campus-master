@@ -24,8 +24,7 @@ public class Seed
         if(context.Users.Any())
             return;
 
-        
-        
+
         var AlexUser = new User
         {
             FirstName = "Aleksey",

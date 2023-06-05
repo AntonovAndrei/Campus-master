@@ -4,6 +4,7 @@ using API.DTOs;
 using API.Services;
 using Domain;
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ public class AccountController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("login")]
-    public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
+    public async Task<ActionResult<dynamic>> Login(LoginDto loginDto)
     {
         var user = await _userManager.FindByEmailAsync(loginDto.Email);
         user.Employee = _dbContext.Employees.Where(e => e.UserId.Equals(user.Id)).FirstOrDefault();
@@ -79,29 +80,37 @@ public class AccountController : ControllerBase
     
     [Authorize]
     [HttpGet]
-    public async Task<ActionResult<UserDto>> GetCurrentUser()
+    public async Task<ActionResult<dynamic>> GetCurrentUser()
     {
         var user = await _userManager.Users
             .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
         return await CreateUserObjectAsync(user);
     } 
         
-    private async Task<UserDto> CreateUserObjectAsync(User user)
+    private async Task<dynamic> CreateUserObjectAsync(User user)
     {
         var roles = await _userManager.GetRolesAsync(user);
         string type;
+        Guid id;
         if (user.Resident == null)
-            type = "employee";
-        else
-            type = "resident";
-        return new UserDto()
         {
-            Id = user.Id,
+            type = "employee";
+            id = user.Employee.Id;
+        }
+        else
+        {
+            type = "resident";
+            id = user.Resident.Id;
+        }
+        return new 
+        {
+            Id = id,//user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             MiddleName = user.MiddleName,
             Token = await _tokenService.CreateTokenAsync(user, roles),
-            Type = type
+            Type = type,
+            Roles = roles
         };
     }
 }

@@ -44,7 +44,6 @@ public class IsRequestCreatorRequirementHandler : AuthorizationHandler<IsRequest
                                        && r.Id.Equals(requestId))
             .Result;
 
-        context.Succeed(requirement);
         if (request != null) context.Succeed(requirement); 
 
         return Task.CompletedTask;
