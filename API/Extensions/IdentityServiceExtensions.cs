@@ -6,6 +6,7 @@ using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -67,6 +68,7 @@ public static class IdentityServiceExtensions
                     policy.Requirements.Add(new IsRequestCreatorRequirement());
                 });
         });
+        services.AddScoped<IAuthorizationHandler, IsRequestCreatorRequirementHandler>();
 
         return services;
     }
